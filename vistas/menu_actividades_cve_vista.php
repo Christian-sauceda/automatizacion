@@ -6,39 +6,39 @@ require_once ('../clases/Conexion.php');
 require_once ('../clases/conexion_mantenimientos.php');
 require_once ('../clases/funcion_visualizar.php');
 
-if (permiso_ver('224')=='1') {
+if (permiso_ver('8224')=='1') {
   $_SESSION['actividades_cve']="...";
 } else {
   $_SESSION['actividades_cve']="No 
             tiene permisos para visualizar";
 }
-if (permiso_ver('225')=='1') {
+if (permiso_ver('8225')=='1') {
   $_SESSION['solicitud_actividades_vista']="...";
 } else {
   $_SESSION['solicitud_actividades_vista']="No 
             tiene permisos para visualizar";
 }
-if (permiso_ver('229')=='1') {
+if (permiso_ver('8229')=='1') {
   $_SESSION['gestion_actividad_cve']="...";
 } else {
   $_SESSION['gestion_actividad_cve']="No 
             tiene permisos para visualizar";
 }
-if (permiso_ver('232')=='1') {
+if (permiso_ver('8232')=='1') {
   $_SESSION['informe_actividad_cve']="...";
 } else {
   $_SESSION['informe_actividad_cve']="No 
             tiene permisos para visualizar";
 }
 
-if (permiso_ver('235')=='1') {
+if (permiso_ver('8235')=='1') {
   $_SESSION['final_actividad_cve']="...";
 } else {
   $_SESSION['final_actividad_cve']="No 
             tiene permisos para visualizar";
 }
 
-if (permiso_ver('288')=='1') {
+if (permiso_ver('8236')=='1') {
   $_SESSION['reporte_act']="...";
 } else {
   $_SESSION['reporte_act']="No 
@@ -90,7 +90,7 @@ ob_end_flush();
           <div class="col-6 col-sm-6 col-md-4">
             <div class="small-box bg-primary">
               <div class="inner">
-                <h5>Actividades<br> Solicitud de Actividad </h5>
+                <h5>Actividades<br> Solicitudes Actividades </h5>
                 <p><?php echo $_SESSION['solicitud_actividades_vista']; ?></p> 
               </div>
               <div class="icon">
@@ -105,7 +105,7 @@ ob_end_flush();
           <div class="col-6 col-sm-6 col-md-4">
             <div class="small-box bg-primary">
               <div class="inner">
-                <h5>Actividades<br> Gestion de Actividad </h5>
+                <h5>Actividades<br> Gestión Actividades </h5>
                 <p><?php echo $_SESSION['gestion_actividad_cve']; ?></p> 
               </div>
               <div class="icon">
@@ -136,7 +136,7 @@ ob_end_flush();
           <div class="col-6 col-sm-6 col-md-4">
             <div class="small-box  bg-light">
               <div class="inner">
-                <h5>Documentación de Actividades VOAE<br> (Informes, Asistencias y Fotografias) </h5>
+                <h5>Documentación de Actividades<br> (Informes, Asistencias y Fotografías) </h5>
                 <p><?php echo $_SESSION['informe_actividad_cve']; ?></p> 
               </div>
               <div class="icon">
@@ -151,13 +151,13 @@ ob_end_flush();
           <div class="col-6 col-sm-6 col-md-4">
             <div class="small-box bg-primary">
               <div class="inner">
-                <h5>Actividades<br> Reporte de Actividades </h5>
+                <h5>Actividades<br> Informe Anual Actividades </h5>
                 <p><?php echo $_SESSION['reporte_act']; ?></p> 
               </div>
               <div class="icon">
                 <i class="fas fa-edit"></i>
               </div>
-              <a href="../vistas/reporte_actividad_cve_vista.php" class="small-box-footer">
+              <a href="../vistas/informe_final_cve_vista.php" class="small-box-footer">
                 Ir <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>

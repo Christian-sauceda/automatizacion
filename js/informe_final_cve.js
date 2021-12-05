@@ -22,14 +22,12 @@ function init(){
 //Función limpiar
 function limpiar()
 {	
-		$("#id_memo").val("");
-		$("#no_memo").val("");
-		$("#id_tipo_memo").val("");
- 		$("#remitente").val("");
- 		$("#destinatario").val("");
- 		$("#fecha").val("");
- 		$("#asunto").val("");
- 		$("#contenido").val("");
+		$("#id_informe_anual").val("");
+		$("#introduccion").val("");
+		$("#objetivos").val("");
+ 		$("#conclu").val("");
+ 		$("#reco").val("");
+ 		$("#año").val("");
 }
 
 //Función mostrar formulario
@@ -100,10 +98,10 @@ buttons: [
 		        titleAttr: "Exportar a Excel",
 				className: "btn btn-success",
 				exportOptions: {
-					  columns: [1, 2, 3, 4, 5],		 
+					  columns: [1, 2],		 
 				     },
 				title: "DEPARTAMENTO DE INFORMÁTICA",
-				messageTop: "REPORTE DE MEMORANDUMS   "
+				messageTop: "REPORTE DE INFORMES ANUALES   "
 
 					},
 
@@ -122,9 +120,9 @@ buttons: [
         orientation: "poltrait",
 		pageSize: "letter",
         exportOptions: {
-					  columns: [1, 2, 3, 4, 5],		 
+					  columns: [1, 2],		 
 				     },
-		 title: 'Reporte de Memorandums',
+		 title: 'Reporte de Informes Anuales',
 		messageTop: "FECHA: " + fecha + " HORA: " + hora,
 
      customize: function (doc) {
@@ -166,7 +164,7 @@ buttons: [
 		],
 		"ajax":
 				{
-					url: '../Controlador/memorandum_cve_controlador.php?op=listar',
+					url: '../Controlador/informe_final_cve_controlador.php?op=listar',
 					type : "get",
 					dataType : "json",						
 					error: function(e){
@@ -191,7 +189,7 @@ function guardaryeditar(e)
 	var formData = new FormData($("#formulario")[0]);
 
 	$.ajax({
-		url: "../Controlador/memorandum_cve_controlador.php?op=guardaryeditar",
+		url: "../Controlador/informe_final_cve_controlador.php?op=guardaryeditar",
 	    type: "POST",
 	    data: formData,
 	    contentType: false,
@@ -218,37 +216,35 @@ function guardaryeditar(e)
 	limpiar();
 }
 
-function mostrar(id_memo)
+function mostrar(id_informe_anual)
 {
-	$.post("../Controlador/memorandum_cve_controlador.php?op=mostrar",{id_memo : id_memo}, function(data, status)
+	$.post("../Controlador/informe_final_cve_controlador.php?op=mostrar",{id_informe_anual : id_informe_anual}, function(data, status)
 	{
 		data = JSON.parse(data);		
 		mostrarform(true);
-		$("#id_memo").val(data.id_memo);
-		$("#no_memo").val(data.no_memo);
-		$("#id_tipo_memo").val(data.id_tipo_memo);
- 		$("#remitente").val(data.remitente);
- 		$("#destinatario").val(data.destinatario);
- 		$("#fecha").val(data.fecha);
- 		$("#asunto").val(data.asunto);
- 		$("#contenido").val(data.contenido);
+		$("#id_informe_anual").val(data.id_informe_anual);
+		$("#introduccion").val(data.introduccion);
+		$("#objetivos").val(data.objetivos);
+ 		$("#conclu").val(data.conclusiones);
+ 		$("#reco").val(data.recomendaciones);
+ 		$("#año").val(data.año);
 
  	})
 }
-function eliminar(id_memo)
+function eliminar(id_informe_anual)
 {
   swal({
     
         title: "Alerta",
     text:
-      "¿Está seguro de eliminar el memorandum?",
+      "¿Está seguro de eliminar el informe?",
     icon: "warning",
     buttons:true,
     dangerMode: false,
   }).then((result) => {
     if (result) {
       
-      $.post("../Controlador/memorandum_cve_controlador.php?op=eliminar", {id_memo : id_memo}, function(e){
+      $.post("../Controlador/informe_final_cve_controlador.php?op=eliminar", {id_informe_anual : id_informe_anual}, function(e){
             swal({
     
             title: e,

@@ -3,13 +3,13 @@ ob_start();
 session_start();
 require_once ('../vistas/pagina_inicio_vista.php');
 require_once ('../clases/Conexion.php');
-require_once ('../clases/Conexionvoae.php');
+
 require_once ('../clases/conexion_mantenimientos.php');
 require_once ('../clases/funcion_bitacora.php');
 require_once ('../clases/funcion_visualizar.php');
 require_once ('../clases/funcion_permisos.php');
 
-$Id_objeto=287; 
+$Id_objeto=8237; 
 
 $visualizacion= permiso_ver($Id_objeto);
 $id_actividad1=$_POST['id_actividad_cve'];
@@ -126,12 +126,29 @@ ob_end_flush();
 
 </div><!-- /.content-wrapper -->
 <!--Fin-Contenido-->
+<script src="../public/datatables/jszip.min.js"></script>
+    
+
+ <link rel="stylesheet" type="text/css" href="../public/DataTables-1.10.25/css/dataTables.bootstrap4.min.css"/>
+<link rel="stylesheet" type="text/css" href="../public/Buttons-1.7.1/css/buttons.bootstrap4.min.css"/>
+ 
+<script type="text/javascript" src="../public/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="../public/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="../public/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../public/DataTables-1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.html5.min.js"></script>
 
 <script type="text/javascript" src="../js/act_externa_detalle.js"></script>
-<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+<script src="../plugins/select2/js/select2.min.js"></script>
 
 
-<script type="text/javascript" language="javascript">
+ 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+ <script type="text/javascript" language="javascript">
     $(document).ready(function() {
 
         $('.select2').select2({
@@ -142,41 +159,39 @@ ob_end_flush();
 
     });
 </script>
-
-<script src="../plugins/select2/js/select2.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
-</script>
-
-
-<!-- Scrip de Validacion para el texto de los inputs -->
 <script>
-  function Card(event, el){//Validar nombre	
-      //Obteniendo posicion del cursor 
-      var val = el.value;//Valor de la caja de texto
-      var pos = val.slice(0, el.selectionStart).length;
-    
-      var out = '';//Salida
-      var filtro = '1234567890\n/';
-      var v = 0;//Contador de caracteres validos
-    
-      //Filtar solo los numeros
-      for (var i=0; i<val.length; i++){
-        if (filtro.indexOf(val.charAt(i)) != -1){
-        v++;
-        out += val.charAt(i);		   
-        
+  function soloLetras(e) {
+    var key = e.keyCode || e.which,
+      tecla = String.fromCharCode(key).toUpperCase(),
+      letras = " ÀÈÌÒÙABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
+      especiales = [8, 37, 39, 46],
+      tecla_especial = false;
+
+    for (var i in especiales) {
+      if (key == especiales[i]) {
+        tecla_especial = true;
+        break;
       }
-      }
-      //Reemplazando el valor
-      el.value = out;
-    
-      //En caso de modificar un numero reposicionar el cursor
-      if(event.keyCode==8){//Tecla borrar precionada
-          el.selectionStart = pos;
-          el.selectionEnd = pos;
-      }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+      return false;
+    }
   }
 </script>
+<script>
+document.getElementById("formulario").addEventListener("keydown", teclear);
 
+var flag = false;
+var teclaAnterior = "";
+
+function teclear(event) {
+  teclaAnterior = teclaAnterior + " " + event.keyCode;
+  var arregloTA = teclaAnterior.split(" ");
+  if (event.keyCode == 32 && arregloTA[arregloTA.length - 2] == 32) {
+    event.preventDefault();
+  }
+}
+</script>
 </body>
 </html>

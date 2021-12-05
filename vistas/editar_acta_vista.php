@@ -78,8 +78,8 @@ ob_end_flush();
             t2.agenda_propuesta,
             t1.desarrollo,
             t1.fecha,
-            t1.hora_inicial,
-            t1.hora_final,
+            t2.hora_inicio,
+            t2.hora_final,
             t2.enlace
             FROM tbl_acta t1
             INNER JOIN tbl_reunion t2 ON t2.id_reunion = t1.id_reunion
@@ -166,7 +166,7 @@ ob_end_flush();
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="horainicio">Hora Inicio: </label>
-                                                        <input required style="width: 30%;" type="time" value="<?php echo $estado['hora_inicial']; ?>" class="form-control" id="horainicio" name="horainicio">
+                                                        <input required style="width: 30%;" type="time" value="<?php echo $estado['hora_inicio']; ?>" class="form-control" id="horainicio" name="horainicio">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="horafinal">Hora Final: </label>

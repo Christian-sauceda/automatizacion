@@ -4,17 +4,17 @@ session_start();
 
 require_once ('../clases/funcion_permisos.php');
 require_once ('../clases/Conexion.php');
-require_once ('../clases/Conexionvoae.php');
+
 require_once ('../clases/funcion_visualizar.php');
 require_once "../Modelos/tipos_memorandum_modelo.php";
 require_once ('../clases/funcion_bitacora.php');
 
 $memorandum=new memorandum();
-$Id_objeto=234; 
+$Id_objeto=8234; 
 
-$id_tipo_memorandum=isset($_POST["id_tipo_memorandum"])? limpiarCadena($_POST["id_tipo_memorandum"]):"";
-$nombre_tipo_memorandum=isset($_POST["nombre_tipo_memorandum"])? limpiarCadena($_POST["nombre_tipo_memorandum"]):"";
-$descripcion_memorandum=isset($_POST["descripcion_memorandum"])? limpiarCadena($_POST["descripcion_memorandum"]):"";
+$id_tipo_memorandum=isset($_POST["id_tipo_memorandum"])? $instancia_conexion->limpiarCadena($_POST["id_tipo_memorandum"]):"";
+$nombre_tipo_memorandum=isset($_POST["nombre_tipo_memorandum"])? $instancia_conexion->limpiarCadena($_POST["nombre_tipo_memorandum"]):"";
+$descripcion_memorandum=isset($_POST["descripcion_memorandum"])? $instancia_conexion->limpiarCadena($_POST["descripcion_memorandum"]):"";
 
 switch ($_GET["op"]){
 	case 'guardaryeditar':
@@ -33,7 +33,7 @@ switch ($_GET["op"]){
 			} else {
 				//SE MANDA A LA BITACORA LA ACCION DE INSERTAR
 				$rspta=$memorandum->insertar($nombre_tipo_memorandum,$descripcion_memorandum);
-				echo $rspta ? "TIPO DE MEMORANDUM REGISTRADO" : "EL TIPO DE MEMORANDUM NO SE PUEDE REGISTRAR";
+				echo $rspta ? "TIPO DE MEMORANDUM REGUISTRADO" : "EL TIPO DE MEMORANDUM NO SE PUEDE REGISTRAR";
 				bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INSERTO', 'EL TIPO DE memorandum "' . $nombre_tipo_memorandum . '"');
 			}
 

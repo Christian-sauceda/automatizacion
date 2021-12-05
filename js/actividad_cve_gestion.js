@@ -296,7 +296,7 @@ function mostrar2(id_actividad_voae)
 		$("#id_actividad").val(data.id_actividad_voae);
 		$("#solicitud_act").val(data.no_solicitud);
 		$("#nombre_act").val(data.nombre_actividad);
-
+		$("#just_act").val(data.justificacion);
  	})
 }
 

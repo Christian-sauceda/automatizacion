@@ -5,12 +5,12 @@ session_start();
 require_once "../Modelos/registro_faltas_modelo.php";
 require_once ('../clases/funcion_permisos.php');
 require_once ('../clases/Conexion.php');
-require_once ('../clases/Conexionvoae.php');
+
 require_once ('../clases/funcion_visualizar.php');
 require_once ('../clases/funcion_bitacora.php');
 
 $falta=new Faltas();
-$Id_objeto=227; 
+$Id_objeto=8227; 
 
 if (permisos::permiso_modificar($Id_objeto)==0)
   {
@@ -31,11 +31,11 @@ else
 
 $usuario_x= $_SESSION['id_usuario'];
 
-$id_falta=isset($_POST["id_falta"])? limpiarCadena($_POST["id_falta"]):"";
-$id_tipo_falta=isset($_POST["id_tipo_falta"])? limpiarCadena($_POST["id_tipo_falta"]):"";
-$fch_falta=isset($_POST["fch_falta"])? limpiarCadena($_POST["fch_falta"]):"";
-$id_persona_alumno=isset($_POST["id_persona_alumno"])? limpiarCadena($_POST["id_persona_alumno"]):"";
-$descripcion=isset($_POST["descripcion"])? limpiarCadena($_POST["descripcion"]):"";
+$id_falta=isset($_POST["id_falta"])?  $instancia_conexion->limpiarCadena($_POST["id_falta"]):"";
+$id_tipo_falta=isset($_POST["id_tipo_falta"])? $instancia_conexion->limpiarCadena($_POST["id_tipo_falta"]):"";
+$fch_falta=isset($_POST["fch_falta"])? $instancia_conexion->limpiarCadena($_POST["fch_falta"]):"";
+$id_persona_alumno=isset($_POST["id_persona_alumno"])? $instancia_conexion->limpiarCadena($_POST["id_persona_alumno"]):"";
+$descripcion=isset($_POST["descripcion"])? $instancia_conexion->limpiarCadena($_POST["descripcion"]):"";
 
 switch ($_GET["op"]){
 	case 'guardaryeditar':

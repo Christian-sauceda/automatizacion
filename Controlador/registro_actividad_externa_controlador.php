@@ -5,12 +5,12 @@ session_start();
 require_once "../Modelos/registro_actividad_externa_cve_modelo.php";
 require_once ('../clases/funcion_permisos.php');
 require_once ('../clases/Conexion.php');
-require_once ('../clases/Conexionvoae.php');
+
 require_once ('../clases/funcion_visualizar.php');
 require_once ('../clases/funcion_bitacora.php');
 
 $externa=new Externa();
-$Id_objeto=287; 
+$Id_objeto=8237; 
 
 if (permisos::permiso_modificar($Id_objeto)==0)
   {
@@ -31,17 +31,17 @@ else
 
 
 $usuario= $_SESSION['id_usuario'];
-$id_actividad_voae=isset($_POST["id_actividad_voae"])? limpiarCadena($_POST["id_actividad_voae"]):"";
+$id_actividad_voae=isset($_POST["id_actividad_voae"])? $instancia_conexion->limpiarCadena($_POST["id_actividad_voae"]):"";
 
-$nombre_act=isset($_POST["nombre_actividad"])? limpiarCadena($_POST["nombre_actividad"]):"";
+$nombre_act=isset($_POST["nombre_actividad"])? $instancia_conexion->limpiarCadena($_POST["nombre_actividad"]):"";
 
-$fecha_inicio=isset($_POST["fch_inicial_actividad"])? limpiarCadena($_POST["fch_inicial_actividad"]):"";
-$fecha_final=isset($_POST["fch_final_actividad"])? limpiarCadena($_POST["fch_final_actividad"]):"";
-$descripcion=isset($_POST["descripcion"])? limpiarCadena($_POST["descripcion"]):"";
-$ente=isset($_POST["staff_alumnos"])? limpiarCadena($_POST["staff_alumnos"]):"";
+$fecha_inicio=isset($_POST["fch_inicial_actividad"])? $instancia_conexion->limpiarCadena($_POST["fch_inicial_actividad"]):"";
+$fecha_final=isset($_POST["fch_final_actividad"])? $instancia_conexion->limpiarCadena($_POST["fch_final_actividad"]):"";
+$descripcion=isset($_POST["descripcion"])? $instancia_conexion->limpiarCadena($_POST["descripcion"]):"";
+$ente=isset($_POST["staff_alumnos"])? $instancia_conexion->limpiarCadena($_POST["staff_alumnos"]):"";
 
-$ambito=isset($_POST["id_ambito"])? limpiarCadena($_POST["id_ambito"]):"";
-$periodo=isset($_POST["periodo"])? limpiarCadena($_POST["periodo"]):"";
+$ambito=isset($_POST["id_ambito"])? $instancia_conexion->limpiarCadena($_POST["id_ambito"]):"";
+$periodo=isset($_POST["periodo"])? $instancia_conexion->limpiarCadena($_POST["periodo"]):"";
 $tipo = "ACTIVIDAD EXTERNA";
 $estado = "6";
 

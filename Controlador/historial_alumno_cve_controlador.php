@@ -5,13 +5,13 @@ session_start();
 require_once "../Modelos/horas_voae_modelo.php";
 require_once ('../clases/funcion_permisos.php');
 require_once ('../clases/Conexion.php');
-require_once ('../clases/Conexionvoae.php');
+
 require_once ('../clases/funcion_visualizar.php');
 require_once ('../clases/funcion_bitacora.php');
 
 
 $horas=new Horas();
-$Id_objeto = 230;
+$Id_objeto = 8230;
 
 $cuenta=$_SESSION['cuenta'];
 

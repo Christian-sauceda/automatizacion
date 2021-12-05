@@ -5,18 +5,18 @@ session_start();
 require_once "../Modelos/listado_asistencia_modelo.php";
 require_once ('../clases/funcion_permisos.php');
 require_once ('../clases/Conexion.php');
-require_once ('../clases/Conexionvoae.php');
+
 require_once ('../clases/funcion_visualizar.php');
 require_once ('../clases/funcion_bitacora.php');
 
 $listado_asistencia=new listado_asistencia();
-$Id_objeto=232; 
-
-$id_asistencia=isset($_POST["id_asistencia"])? limpiarCadena($_POST["id_asistencia"]):"";
-$cuenta=isset($_POST["cuenta"])? limpiarCadena($_POST["cuenta"]):"";
-$nombre_alumno=isset($_POST["nombre_alumno"])? limpiarCadena($_POST["nombre_alumno"]):"";
-$cant_horas=isset($_POST["cant_horas"])? limpiarCadena($_POST["cant_horas"]):"";
-$carrera=isset($_POST["carrera"])? limpiarCadena($_POST["carrera"]):"";
+$Id_objeto=8232; 
+ 
+$id_asistencia=isset($_POST["id_asistencia"])? $instancia_conexion->limpiarCadena($_POST["id_asistencia"]):"";
+$cuenta=isset($_POST["cuenta"])? $instancia_conexion->limpiarCadena($_POST["cuenta"]):"";
+$nombre_alumno=isset($_POST["nombre_alumno"])? $instancia_conexion->limpiarCadena($_POST["nombre_alumno"]):"";
+$cant_horas=isset($_POST["cant_horas"])? $instancia_conexion->limpiarCadena($_POST["cant_horas"]):"";
+$carrera=isset($_POST["carrera"])? $instancia_conexion->limpiarCadena($_POST["carrera"]):"";
 $id_actividad_voae=$_SESSION['id_actividad_cve'];
 
 if (permisos::permiso_eliminar($Id_objeto)=='0')    {
@@ -34,7 +34,7 @@ switch ($_GET["op"]){
 	case 'guardaryeditar':
 
 		$sql = "SELECT * FROM tbl_voae_asistencias WHERE cuenta = '$cuenta' && id_actividad_voae = '$id_actividad_voae'";
-		$rows = ejecutarConsulta($sql);
+		$rows = $instancia_conexion->ejecutarConsulta($sql);
 		if (mysqli_num_rows($rows)>1){
 			echo 'La cuenta ingresada ya existe en el Listado' ;
 		} else {
@@ -46,7 +46,7 @@ switch ($_GET["op"]){
 				
 				//SE MANDA A LA BITACORA LA ACCION DE INSERTAR
 				$rspta=$listado_asistencia->insertar($id_actividad_voae,$cuenta,$nombre_alumno,$cant_horas, $carrera );
-				echo $rspta ? "Asistencia  Registrada" : "El informe no se pudo registrar - ";
+				echo $rspta ? "Asistencia  Registrada" : "La asistencia no se pudo registrar";
 				bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INSERTO', 'LA ASISTENCIA DEL ESTUDIANTE CON CUENTA "' . $cuenta. '" EN LA ACTIVIDAD CON ID "'. $id_actividad_voae . '"');
 			}
 			else {
@@ -176,7 +176,7 @@ switch ($_GET["op"]){
 					  '$cant_horas',
 					  '$carrera'
 				  )";
-				  ejecutarConsulta($insertarData);
+				   $instancia_conexion->ejecutarConsulta($insertarData);
 				  $registros++;
 						  
 				  } 
@@ -188,7 +188,7 @@ switch ($_GET["op"]){
 						  carrera='" .$carrera. "' 
 						  WHERE id_actividad_voae ='".($id_actividad_voae)."' AND cuenta='".($cuenta)."'
 					  ");
-					  $result_update = ejecutarConsulta($updateData);
+					  $result_update = $instancia_conexion->ejecutarConsulta($updateData);
 					  $actualizaciones++;
 
 				  }

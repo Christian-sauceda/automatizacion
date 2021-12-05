@@ -256,9 +256,9 @@ function mostrar(id_asistencia) {
         mostrarform(true);
 
         $("#id_asistencia").val(data.id_asistencia);
-        $("#cuenta").select2('val', data.cuenta);
+        $("#cuenta").val(data.cuenta);
         $("#nombre_alumno").val(data.nombre_alumno);
-        $("#carrera").select2('val', data.carrera);
+        $("#carrera").val(data.carrera);
         $("#cant_horas").val(data.cant_horas);
         $("#id_cuenta2").val(data.cuenta);
 

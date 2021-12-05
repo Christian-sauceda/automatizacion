@@ -1,11 +1,9 @@
 <?php 
 //Incluímos inicialmente la conexión a la base de datos
 
+require "../clases/conexion_mantenimientos.php";
 
-require_once ('../clases/Conexion.php');
-require_once ('../clases/Conexionvoae.php');
-require "../clases/Conexionvoae.php";
-require "../clases/funcion_permisos.php";
+$instancia_conexion = new conexion();
 
 
 
@@ -20,10 +18,11 @@ Class listado_asistencia
 	//Implementamos un método para insertar registros
 	public function insertar($id_actividad_voae,$cuenta,$nombre_alumno,$cant_horas, $carrera )
 	{
+		global $instancia_conexion;
 		$sql = "INSERT INTO `tbl_voae_asistencias` ( `id_actividad_voae`, `cuenta`, `nombre_alumno`, `cant_horas`, `carrera`) 
-				VALUES ('$id_actividad_voae','$cuenta','$nombre_alumno','$cant_horas', '$carrera');
+				VALUES ('$id_actividad_voae','$cuenta', trim(upper('$nombre_alumno')),'$cant_horas', trim(upper( '$carrera'))); 
 		";
-		return ejecutarConsulta($sql);
+		return $instancia_conexion->ejecutarConsulta($sql);
 
 		
 	}
@@ -31,31 +30,35 @@ Class listado_asistencia
 	//Implementamos un método para editar registros
 	public function editar(	$id_asistencia,$cuenta,$nombre_alumno,$cant_horas, $carrera)
 	{
-		$sql="UPDATE tbl_voae_asistencias SET cuenta = '$cuenta', nombre_alumno = '$nombre_alumno', cant_horas = '$cant_horas', carrera = '$carrera'
+		global $instancia_conexion;
+		$sql="UPDATE tbl_voae_asistencias SET cuenta = '$cuenta', nombre_alumno =  trim(upper('$nombre_alumno')), cant_horas = '$cant_horas', carrera =  trim(upper( '$carrera'))
 		 WHERE  id_asistencia='$id_asistencia';";
-		return ejecutarConsulta($sql);
+		return $instancia_conexion->ejecutarConsulta($sql);
 	}
 
 
 	//Implementar un método para mostrar los datos de un registro a modificar
 	public function mostrar($id_asistencia)
 	{
+		global $instancia_conexion;
 		$sql="SELECT * FROM tbl_voae_asistencias WHERE id_asistencia='$id_asistencia'";
-		return ejecutarConsultaSimpleFila($sql);
+		return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
 	}
 
 	//Implementar un método para listar los registros
 	public function listar($id_actividad_voae)
 	{
+		global $instancia_conexion;
 		$sql="SELECT * FROM tbl_voae_asistencias where id_actividad_voae = '$id_actividad_voae' ORDER BY carrera DESC,  nombre_alumno ASC";
-		return ejecutarConsulta($sql);		
+		return $instancia_conexion->ejecutarConsulta($sql);		
 	}
 
 	//Implementamos un método para eliminar categorías
 	public function eliminar($id_asistencia)
 	{
+		global $instancia_conexion;
 		$sql="DELETE FROM tbl_voae_asistencias WHERE id_asistencia='$id_asistencia' ";
-		return ejecutarConsulta($sql);
+		return $instancia_conexion->ejecutarConsulta($sql);
 	}
 }
 

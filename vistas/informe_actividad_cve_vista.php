@@ -3,13 +3,13 @@ ob_start();
 session_start();
 require_once ('../vistas/pagina_inicio_vista.php');
 require_once ('../clases/Conexion.php');
-require_once ('../clases/Conexionvoae.php');
+
 require_once ('../clases/conexion_mantenimientos.php');
 require_once ('../clases/funcion_bitacora.php');
 require_once ('../clases/funcion_visualizar.php');
 require_once ('../clases/funcion_permisos.php');
 
-$Id_objeto=232; 
+$Id_objeto=8232; 
 
 $usuario = $_SESSION['id_usuario'];
 $visualizacion= permiso_ver($Id_objeto);
@@ -263,7 +263,19 @@ ob_end_flush();
 
   </div><!-- /.content-wrapper -->
 <!--Fin-Contenido-->
+<script src="../public/datatables/jszip.min.js"></script>
+    
 
+ <link rel="stylesheet" type="text/css" href="../public/DataTables-1.10.25/css/dataTables.bootstrap4.min.css"/>
+<link rel="stylesheet" type="text/css" href="../public/Buttons-1.7.1/css/buttons.bootstrap4.min.css"/>
+ 
+<script type="text/javascript" src="../public/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="../public/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="../public/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../public/DataTables-1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="../js/informe_actividad_cve.js"></script>
 <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 
@@ -334,18 +346,6 @@ $('input[type="file"]').on('change', function(){
       }
   }
 </script>
-<script src="../public/datatables/jszip.min.js"></script>
-    
 
- <link rel="stylesheet" type="text/css" href="../public/DataTables-1.10.25/css/dataTables.bootstrap4.min.css"/>
-<link rel="stylesheet" type="text/css" href="../public/Buttons-1.7.1/css/buttons.bootstrap4.min.css"/>
- 
-<script type="text/javascript" src="../public/pdfmake-0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="../public/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="../public/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../public/DataTables-1.10.25/js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" src="../public/Buttons-1.7.1/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.bootstrap4.min.js"></script>
-<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.html5.min.js"></script>
 </body>
 </html>

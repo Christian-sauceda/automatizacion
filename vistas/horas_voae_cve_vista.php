@@ -4,13 +4,13 @@ ob_start();
 session_start();
 require_once ('../vistas/pagina_inicio_vista.php');
 require_once ('../clases/Conexion.php');
-require_once ('../clases/Conexionvoae.php');
+
 require_once ('../clases/conexion_mantenimientos.php');
 require_once ('../clases/funcion_bitacora.php');
 require_once ('../clases/funcion_visualizar.php');
 require_once ('../clases/funcion_permisos.php');
 
-$Id_objeto=228; 
+$Id_objeto=8228; 
 
 
 $visualizacion= permiso_ver($Id_objeto);
@@ -148,7 +148,7 @@ ob_end_flush();
                  <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <label>Actividad Externa:</label>
                   <select class="form-control-lg select2" id= "id_actividad" style="width: 100%;" name="id_actividad" required="">
-                                <option  value="0" disabled="disabled">ID --- NOMBRE</option>
+                                <option value="0" disabled="disabled">ID <---> NOMBRE</option>
                                   <?php
                                     $query = $mysqli -> query ("select id_actividad_voae, concat(id_actividad_voae,' -- ',nombre_actividad) as actividad from tbl_voae_actividades where tipo_actividad = 'Actividad Externa';");
                                     while ($resultado = mysqli_fetch_array($query)) {
@@ -196,7 +196,20 @@ ob_end_flush();
     </div><!-- /.content-wrapper -->
   <!--Fin-Contenido-->
   </div> 
+ <script src="../public/datatables/jszip.min.js"></script>
+    
+
+ <link rel="stylesheet" type="text/css" href="../public/DataTables-1.10.25/css/dataTables.bootstrap4.min.css"/>
+<link rel="stylesheet" type="text/css" href="../public/Buttons-1.7.1/css/buttons.bootstrap4.min.css"/>
  
+<script type="text/javascript" src="../public/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="../public/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="../public/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../public/DataTables-1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.html5.min.js"></script>
+
 <script type="text/javascript" src="../js/horas_voae.js"></script>
 
 <script src="../plugins/select2/js/select2.min.js"></script>
@@ -250,18 +263,5 @@ function teclear(event) {
   }
 }
 </script>
-<script src="../public/datatables/jszip.min.js"></script>
-    
-
- <link rel="stylesheet" type="text/css" href="../public/DataTables-1.10.25/css/dataTables.bootstrap4.min.css"/>
-<link rel="stylesheet" type="text/css" href="../public/Buttons-1.7.1/css/buttons.bootstrap4.min.css"/>
- 
-<script type="text/javascript" src="../public/pdfmake-0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="../public/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="../public/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../public/DataTables-1.10.25/js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" src="../public/Buttons-1.7.1/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.bootstrap4.min.js"></script>
-<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.html5.min.js"></script>
 </body>
 </html>

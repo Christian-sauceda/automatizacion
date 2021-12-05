@@ -5,13 +5,13 @@ session_start();
 require_once "../Modelos/registro_actividad_externa_cve_modelo.php";
 require_once ('../clases/funcion_permisos.php');
 require_once ('../clases/Conexion.php');
-require_once ('../clases/Conexionvoae.php');
+
 require_once ('../clases/funcion_visualizar.php');
 require_once ('../clases/funcion_bitacora.php');
 
 
 $externa=new Externa();
-$Id_objeto = 287;
+$Id_objeto = 8237;
 
 $actividad=$_SESSION['id_actividad_cve'];
 

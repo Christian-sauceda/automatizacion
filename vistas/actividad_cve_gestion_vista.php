@@ -4,13 +4,13 @@ ob_start();
 session_start();
 require_once ('../vistas/pagina_inicio_vista.php');
 require_once ('../clases/Conexion.php');
-require_once ('../clases/Conexionvoae.php');
+
 require_once ('../clases/conexion_mantenimientos.php');
 require_once ('../clases/funcion_bitacora.php');
 require_once ('../clases/funcion_visualizar.php');
 require_once ('../clases/funcion_permisos.php');
 
-$Id_objeto=229; 
+$Id_objeto=8229; 
 
 
 $visualizacion= permiso_ver($Id_objeto);
@@ -264,7 +264,7 @@ if($visualizacion==0){
                 <!-- Card 1 -->
                 <div class="card card-default">
                 <div class="card-header bg-gradient-dark">
-                  <h3 class="card-title">Actividad y Numero de Solicitud</h3>
+                  <h3 class="card-title">Actividad y Número de Solicitud</h3>
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                       <i class="fas fa-minus"></i>
@@ -276,11 +276,11 @@ if($visualizacion==0){
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <label>Actividad:</label>
                    <input type="hidden" class="form-control" name="id_actividad" id="id_actividad"  required>
-                  <input type="text" class="form-control" name="nombre_act" id="nombre_act" maxlength="50" maxlength="50" style="text-transform: uppercase;" disabled onkeypress="return soloLetras(event)"  required>
+                  <input disabled  minlength="5" maxlength="200" type="text" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" required name="nombre_act" id="nombre_act" placeholder="nombre_act">
                 </div>
                  <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <label>Numero de Solicitud:</label>
-                  <input type="text" class="form-control" name="solicitud_act" id="solicitud_act" maxlength="50"  maxlength="50" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" disabled required>
+                  <input type="text" name="solicitud_act" id="solicitud_act" maxlength="50"  maxlength="50" style="text-transform: uppercase;" onkeypress="return soloLetras(event)" disabled required>
                 </div>
                 </div>
                 </div>
@@ -299,7 +299,7 @@ if($visualizacion==0){
                 </div>
                 <div class="card-body">
                 <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <label>Justificar:</label>
+                  <label>Justificación:</label>
                   <input type="text" class="form-control" name="just_act" id="just_act" maxlength="50" placeholder="Justificar Actividad" required>
                 </div>
                 </div>
@@ -321,6 +321,19 @@ if($visualizacion==0){
 </div><!-- /.content-wrapper -->
 <!--Fin-Contenido-->
 </div> 
+<script src="../public/datatables/jszip.min.js"></script>
+    
+
+ <link rel="stylesheet" type="text/css" href="../public/DataTables-1.10.25/css/dataTables.bootstrap4.min.css"/>
+<link rel="stylesheet" type="text/css" href="../public/Buttons-1.7.1/css/buttons.bootstrap4.min.css"/>
+ 
+<script type="text/javascript" src="../public/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="../public/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="../public/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../public/DataTables-1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.html5.min.js"></script>
 
 <script type="text/javascript" src="../js/actividad_cve_gestion.js"></script>
 <script src="../plugins/select2/js/select2.min.js"></script>
@@ -388,18 +401,5 @@ function teclear(event) {
   }
 }
 </script>
-<script src="../public/datatables/jszip.min.js"></script>
-    
-
- <link rel="stylesheet" type="text/css" href="../public/DataTables-1.10.25/css/dataTables.bootstrap4.min.css"/>
-<link rel="stylesheet" type="text/css" href="../public/Buttons-1.7.1/css/buttons.bootstrap4.min.css"/>
- 
-<script type="text/javascript" src="../public/pdfmake-0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="../public/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="../public/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../public/DataTables-1.10.25/js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" src="../public/Buttons-1.7.1/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.bootstrap4.min.js"></script>
-<script type="text/javascript" src="../public/Buttons-1.7.1/js/buttons.html5.min.js"></script>
 </body>
 </html>
