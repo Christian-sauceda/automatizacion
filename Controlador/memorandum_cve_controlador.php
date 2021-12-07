@@ -75,13 +75,26 @@ switch ($_GET["op"]){
 				$result_valor = $mysqli->query($valor);
 				$valor_viejo = $result_valor->fetch_array(MYSQLI_ASSOC);
 
+				if ($valor_viejo['no_memo'] <> $no_memo and $valor_viejo['id_tipo_memo'] <> $id_tipo_memo and $valor_viejo['remitente'] <> $remitente and $valor_viejo['destinatario'] <> $destinatario and $valor_viejo['asunto'] <> $asunto and $valor_viejo['contenido'] <> $contenido) {
+					bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' EL MEMORANDUM CON EL NUMERO DE MEMO: "' . $valor_viejo['no_memo'] . '" ');
+
+					$rspta=$memorandum->editar($id_memo,$no_memo,$id_tipo_memo,$remitente,$destinatario,$asunto,$contenido);
+					echo $id_memo;
+					echo $rspta ? "MEMORANDUM fue actualizado" : "MEMORANDUM no se pudo actualizar";
+
 				//CONDICION PARA LA MODIFICACION DEL NOMBRE Y ACTIVIDAD
-				if ($valor_viejo['no_memo'] <> $no_memo and $valor_viejo['id_tipo_memo'] <> $id_tipo_memo) {
-					bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' EL MEMORANDUM "' . $valor_viejo['no_memo'] . '" POR "' . $no_memo . '" Y LA ACTIVIDAD "'. $valor_viejo['id_tipo_memo'] . '"POR"' . $id_tipo_memo .'" ');
+				} elseif ($valor_viejo['no_memo'] <> $no_memo) {
+					bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' EL NUMERO DE MEMORANDUM "' . $valor_viejo['no_memo'] . '" POR "' . $no_memo . '" ');
 
 					$rspta=$memorandum->editar($id_memo,$no_memo,$id_tipo_memo,$remitente,$destinatario,$asunto,$contenido);
 					echo $rspta ? "MEMORANDUM fue actualizado" : "MEMORANDUM no se pudo actualizar";
 
+					} elseif ($valor_viejo['id_tipo_memo'] <> $id_tipo_memo) {
+					bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' EL TIPO DE MEMORANDUM "' . $valor_viejo['id_tipo_memo'] . '" POR "' . $id_tipo_memo . '" ');
+
+					$rspta=$memorandum->editar($id_memo,$no_memo,$id_tipo_memo,$remitente,$destinatario,$asunto,$contenido);
+					echo $rspta ? "MEMORANDUM fue actualizado" : "MEMORANDUM no se pudo actualizar";
+					
 				//CONDICION PARA LA MODIFICACION DEL REMITENTE
 				} elseif ($valor_viejo['remitente'] <> $remitente) {
 					bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'MODIFICO', ' EN EL MEMORANDUM EL REMITENTE"' . $valor_viejo['remitente'] . '" POR "' . $remitente . '" ');
@@ -110,16 +123,7 @@ switch ($_GET["op"]){
 				$rspta=$memorandum->editar($id_memo,$no_memo,$id_tipo_memo,$remitente,$destinatario,$asunto,$contenido);
 				echo $rspta ? "El MEMORANDUM fue actualizado" : "EL MEMORANDUM no se pudo actualizar";
 				} 
-
-				/*
-				$valor = "select id_memo,no_memo, id_tipo_memo, remitente,destinatario,fecha,asunto,contenido from tbl_voae_memorandums WHERE id_memo= '$id_memo'";
-				$result_valor = $mysqli->query($valor);
-				$valor_viejo = $result_valor->fetch_array(MYSQLI_ASSOC);
-
-				
-				$rspta=$memorandum->editar($id_memo,$no_memo,$id_tipo_memo,$remitente,$destinatario,$fecha,$asunto,$contenido);
-					echo $rspta ? "MEMORANDUM ACTUALIZADO" : "EL MEMORANDUM NO SE PUEDE ACTUALIZAR";
-					*/
+	
 			}
 		} //FIN
 	break;

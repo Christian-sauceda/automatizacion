@@ -24,7 +24,7 @@ Class memorandum
 	}
 
 	//Implementamos un método para editar registros
-	public function editar($id_memo,$no_memo,$id_tipo_memo,$remitente,$destinatario,$asunto,$contenido)
+	public function editar($id_memo,$no_memo,$id_tipo_memo,$remitente,$destinatario,$asunto,$contenido) 
 	{
 		global $instancia_conexion;
 		$sql="UPDATE tbl_voae_memorandums SET id_memo=upper(trim('$id_memo')),  no_memo= upper(trim('$no_memo')),
@@ -52,9 +52,7 @@ Class memorandum
 
 	//Implementar un método para listar los registros
 	public function listar()
-	{
-		//$sql="SELECT * FROM tbl_voae_memorandums";
-		//return $instancia_conexion->ejecutarConsulta($sql);		
+	{	
 
 		global $instancia_conexion;
 		$sql="SELECT m.id_memo as 'id_memo', m.no_memo as 'no_memo', tm.nombre_tipo_memorandum as 'nombre_tipo_memorandum',

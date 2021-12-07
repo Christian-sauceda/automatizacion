@@ -108,7 +108,7 @@ ob_end_flush();
                     <!-- Card 1 Nombre de memorandum y ultimo memo -->
                     <div class="card card-default">
                       <div class="card-header bg-gradient-dark">
-                        <h3 class="card-title">Numero de Memorandum</h3>
+                        <h3 class="card-title">Número de Memorandum</h3>
                         <div class="card-tools">
                           <button type="button" class="btn btn-tool" data-card-widget="collapse">
                             <i class="fa fa-minus"></i>
@@ -148,7 +148,7 @@ ob_end_flush();
                     <!-- Card 2 sELECT TIPO DE MEMO -->
                     <div class="card card-default">
                       <div class="card-header bg-gradient-dark">
-                        <h3 class="card-title">Tipo de Memerandum</h3>
+                        <h3 class="card-title">Tipo de Memorandum</h3>
                         <div class="card-tools">
                           <button type="button" class="btn btn-tool" data-card-widget="collapse">
                             <i class="fa fa-minus"></i>
@@ -196,7 +196,7 @@ ob_end_flush();
                               <label>REMITENTE </label>
                               <input type="text" class="form-control" name="remitente" id="remitente" 
                               style="text-transform: uppercase;" placeholder="REMITENTE" minlength="3" 
-                              maxlength="50" onkeypress="return soloLetras(event)" oncopy="return false" 
+                              maxlength="255" onkeypress="return soloLetras(event)" oncopy="return false" 
                               onpaste="return false" required="" />
                             </div>
                           </div>
@@ -206,7 +206,7 @@ ob_end_flush();
                               <label>DESTINATARIO </label>
                               <input type="text" class="form-control" name="destinatario" id="destinatario" 
                               style="text-transform: uppercase;" placeholder="DESTINATARIO" minlength="3" 
-                              maxlength="50" onkeypress="return soloLetras(event)" oncopy="return false" 
+                              maxlength="255" onkeypress="return soloLetras(event)" oncopy="return false" 
                               onpaste="return false" required="" />
                             </div>
                           </div>
