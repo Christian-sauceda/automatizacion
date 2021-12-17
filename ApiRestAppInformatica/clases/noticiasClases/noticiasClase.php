@@ -9,24 +9,25 @@
     {
 
         //Funcion para obtener las noticias por rol
-        public function getNewsByRol($idRol)
+        public function getNewsByToken($token)
         {
             try {
                 //Declarar variables
                 $consulta = new Consultas();
-                $respuesta = $consulta->obtenerNoticias($idRol);
+                $respuesta = $consulta->obtenerNoticias($token);
                 $datos = array();
                 $idNoticia = null;                
                 $i = 0; 
                 $push = false;
                 
+                //print_r($respuesta);
                 if(mysqli_num_rows($respuesta) > 0)
-                {               
+                {     
                     //Preparacion del array para el json
                     while($datosbd = mysqli_fetch_assoc($respuesta))
-                    {          
+                    {         
                         //Validar si una noticia tiene mas de un recurso para no mandar datos de la noticia repetidos
-                        if($idNoticia != $datosbd['id'] )
+                        if($idNoticia != $datosbd['id'])
                         {                                 
                             //Insertar en array si solo hay una imagen en la noticia
                             if($push == true) array_push($datos, $datosArray);
@@ -67,12 +68,13 @@
                     if($i >= 1) array_push($datos, $datosArray);
 
                     //Datos para el consumidor
-                    return json_encode($datos);
-                }else
+                    return json_encode($datos); 
+                }
+                else
                 {
                     //No se encontraron datos
                     return false;
-                }
+                }    
             } catch (Exception $e) {
                 return "Error:".$e->getMessage;
             }            

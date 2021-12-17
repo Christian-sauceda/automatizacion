@@ -111,7 +111,7 @@ class mypdf extends FPDF
        
 
         $año=$_POST['año'];
-        $sql="SELECT * FROM tbl_voae_actividades Where YEAR(fch_inicial_actividad)= $año and id_estado = 6";
+        $sql="SELECT * FROM tbl_voae_actividades Where YEAR(fch_inicial_actividad)= $año and id_estado = 6 and tipo_actividad = 'ACTIVIDAD INTERNA' ";
         global $instancia_conexion;
         $stmt = $instancia_conexion->ejecutarConsulta($sql);
 

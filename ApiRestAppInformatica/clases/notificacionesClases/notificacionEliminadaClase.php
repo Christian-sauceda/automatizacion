@@ -19,7 +19,7 @@
 
                 /* Estructura que se debe recibir para eliminar solo un registro
                     {
-                        "transaccion": "El id de la transaccion en la base de datos",
+                        "notifUsuario": "El id de la tabla notificacion usuario en la base de datos",
                     }
                 */
 
@@ -30,11 +30,11 @@
                 */
 
                 //print_r($datosArray);
-                if(isset($datosArray['transaccion']))
+                if(isset($datosArray['notifUsuario']))
                 {
-                    if(is_numeric($datosArray['transaccion']))
+                    if(is_numeric($datosArray['notifUsuario']))
                     {
-                        $respuesta = $consulta->NotificacionEliminada($datosArray['transaccion']);  
+                        $respuesta = $consulta->NotificacionEliminada($datosArray['notifUsuario']);  
                         
                         //Respuesta del servidor
                         if($respuesta != false)

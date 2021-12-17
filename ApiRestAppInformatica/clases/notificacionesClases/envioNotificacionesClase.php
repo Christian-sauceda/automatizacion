@@ -137,7 +137,8 @@
                 'idNotificacion' => $pIdNotificacion,
                 'title' => $pTitle, 
                 'body' => $pBody,
-                'image' => $pImagen 
+                'image' => $pImagen,
+                'tipoNotificacion' => "not" 
             );
 
             $fieldsFirebase = array(

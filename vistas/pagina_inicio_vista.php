@@ -537,42 +537,7 @@ if (session_status() === PHP_SESSION_NONE) {
               </ul>
             </li>
 
-            <!---- Jefatura ----->
-            <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_Jefatura'] ?>">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-user-tie"></i>
-                <p>
-                  Jefatura
-                  <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right"></span>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item" style="display:<?php echo $_SESSION['g_cargajefatura'] ?>">
-                  <a href="../vistas/g_cargajefatura_vista" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Gestión Carga Academica</p>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav nav-treeview">
-                <li class="nav-item" style="display:<?php echo $_SESSION['g_reasignacionjefatura'] ?>">
-                  <a href="../vistas/g_reasignacionjefatura_vista" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Gestón Reasignacion Academica </p>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav nav-treeview">
-                <li class="nav-item" style="display:<?php echo $_SESSION['g_planificacionjefatura'] ?>">
-                  <a href="../vistas/g_planificacionjefatura_vista" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Gestión Administracion Y Planificacion Academica </p>
-                  </a>
-                </li>
-              </ul>
-
-            </li>
+          
 
             <!----Modulo Administrativo App ----->
             <li class="nav-item has-treeview" style="display:<?php echo $_SESSION['btn_administracion_app'] ?>">

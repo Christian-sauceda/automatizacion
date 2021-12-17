@@ -28,7 +28,7 @@
                 if(isset($datosArray['token']) && isset($datosArray['tipoPlataforma']))
                 {
                     //Cambiar si se necesita en implementacion
-                    $correo = "invitado@unah.hn";
+                    $usuario = "invitados";
 
                     /*Validar el tipo de plataforma, tipos de resultados consultados de la propiedad 
                     DeviceInfo.Platform de Xamarin */
@@ -44,7 +44,7 @@
                             break; 
                         }                           
 
-                    $respuesta = $consulta->insertarToken($datosArray['token'], $correo,
+                    $respuesta = $consulta->insertarToken($datosArray['token'], $usuario,
                                         $tipoPlataforma);
                     
                     if($respuesta != false)

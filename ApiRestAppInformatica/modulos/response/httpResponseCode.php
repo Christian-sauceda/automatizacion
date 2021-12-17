@@ -55,10 +55,18 @@
 
             return $respuestaApi;
         }
+
+        public function unauthorized($mensaje)
+        {
+            $respuestaApi= array(
+                'http_response_code' => 401,
+                'mensaje' => $mensaje
+            );
+
+            return $respuestaApi;
+        }
            
     }
-
      
     ob_end_flush(); 
-
 ?>

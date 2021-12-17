@@ -58,7 +58,9 @@
                         break;
                 }
             } catch(Exception $e) {
-                echo "Error:".$e->getMessage;
+                http_response_code(500);
+                $mensaje = "Error del servidor: ".$e->getMessage;
+                echo json_encode($httpResponseCode->internalServerError($mensaje));
             }                    
         }else
         {
