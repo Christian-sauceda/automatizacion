@@ -5,7 +5,7 @@ require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 
-$Id_objeto = 119;
+$Id_objeto = 9250;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -74,7 +74,7 @@ ob_end_flush();
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Detalles de la solicitud</h5>
+          <h5 class="modal-title">Detalles de la Solicitud</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -93,7 +93,7 @@ ob_end_flush();
 
             <body style="margin:0;padding:0">
               <p align="center" class="f0">
-                <strong>Solicitud de reasignación académica</strong>
+                <strong>Solicitud de Reasignación Académica</strong>
               </p>
               <p style="margin-left: 30px;">
                 <img width="246" height="123" src="../dist/img/unah_log.jpg" />
@@ -169,34 +169,34 @@ ob_end_flush();
 
             </select>
             <label for="">Nombre Proyecto</label>
-            <input type="text" class="form-control" id="nombre_proyecto" maxlength="90" name="nombre_proyecto" onkeyup="mayusculas(this);" required>
+            <input type="text" class="form-control" id="nombre_proyecto" name="nombre_proyecto" maxlength="100" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('nombre_proyecto');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" required>
             <div class="row">
               <div class="col-6">
-                <label for="">Fecha inicio</label>
+                <label for="">Fecha Inicio</label>
                 <input type="text" class="form-control" id="datepicker" onkeydown="return false" name="fecha_inicio" required>
               </div>
               <div class="col-6">
-                <label for="">Fecha final</label>
+                <label for="">Fecha Final</label>
                 <input type="text" class="form-control" id="datepicker1" onkeydown="return false" name="fecha_final" required>
               </div>
             </div>
-            <label for="">Periodo del proyecto</label>
+            <label for="">Periodo del Proyecto</label>
             <select name="periodo_soli" id="periodo_soli" class="form-control">
               <option value="PERIODO I">PERIODO I</option>
               <option value="PERIODO II">PERIODO II</option>
               <option value="PERIODO III">PERIODO III</option>
               <option value="PERIODO IV">PERIODO IV</option>
             </select>
-            <label for="">Cantidad horas</label>
-            <input type="text" id="horas_soli" name="horas_soli" class="form-control" number maxlength="2" required>
+            <label for="">Cantidad Horas</label>
+            <input type="text" id="horas_soli" name="horas_soli" class="form-control" number maxlength="2" value="" onkeypress="return solonumeros(event)" oncopy="return false" onpaste="return false" required>
             <label for="">Avance Realizado</label>
-            <textarea class="form-control" id="avance_realizado" name="avance_realizado" rows="3" onkeyup="mayusculas(this);" required></textarea>
+            <textarea class="form-control" id="avance_realizado" name="avance_realizado" maxlength="200" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('avance_realizado');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" required></textarea>
 
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" id="genera_solicitud">Enviar</button>
+          <button type="button" class="btn btn-primary" id="genera_solicitud">Guardar</button>
         </div>
       </div>
     </div>
@@ -210,7 +210,7 @@ ob_end_flush();
           <div class="col-sm-6">
 
 
-            <h1>Solicitudes de reasignación</h1>
+            <h1>Solicitudes de Reasignación</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -231,7 +231,7 @@ ob_end_flush();
       <div class="card-body  ">
         <div class="row">
           <div class="col-9">
-            <h3 class="card-title">Registro de solicitudes</h3>
+            <h3 class="card-title">Registro de Solicitudes</h3>
           </div>
           <div class="col-3">
             <a href="#" class="btn btn-success btn-m" data-toggle="modal" id="nueva_soli_modal" data-target="#nueva_solicitud">Nueva solicitud</a>
@@ -521,3 +521,4 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>

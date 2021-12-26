@@ -5,7 +5,7 @@ require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 
-$Id_objeto = 125;
+$Id_objeto = 9256;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -78,7 +78,7 @@ ob_end_flush();
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>INDICADORES DE GESTIÓN ACADEMICA DE JEFATURA</h1>
+                        <h1>Indicadores de Gestión académica de Jefatura</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -99,7 +99,7 @@ ob_end_flush();
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Envio de datos</h5>
+                        <h5 class="modal-title">Envío de Datos</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -127,7 +127,7 @@ ob_end_flush();
                                         <br> -->
                                         <div class="col-12">
                                             <label for="">Descripción</label><br>
-                                            <textarea cols="20" rows="5" class="form-control" id="desc_indicadro" name="desc_indicadro" maxlength="100" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('descripcion_ed');" onkeypress="return sololetras(event)" required></textarea>
+                                            <textarea cols="20" rows="5" class="form-control" id="desc_indicadro" name="desc_indicadro" maxlength="50" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('desc_indicadro');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@ ob_end_flush();
             <div class="card-body  ">
                 <div class="row">
                     <div class="col-9">
-                        <h3 class="card-title">DETALLES INDICADORES DE GESTIÓN</h3>
+                        <h3 class="card-title">Detalle Indicadores de Gstión</h3>
                     </div>
                     <div class="col-3">
                         <a href="../vistas/agregar_detalles_indicadores.php" class="btn btn-success btn-m">Agregar Nuevo Detalle Indicador</a>
@@ -164,7 +164,7 @@ ob_end_flush();
             <div class="container-fluid">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">INDICADORES ACADEMICOS DETALLES</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Indicadores Académicos Detalles</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -178,7 +178,7 @@ ob_end_flush();
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">ID</th>
-                                                        <th scope="col">DESCRIPCION</th>
+                                                        <th scope="col">DESCRIPCIÓN</th>
                                                         <th scope="col">NOMBRE INDICADOR</th>
                                                         <th scope="col">ELIMINAR</th>
                                                         <th scope="col">EDITAR</th>
@@ -433,6 +433,7 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>
 <script>
     //este script srive para validar los campos del modal
     $("#descrp_ca, #descrip_cr").keypress(function(key) {

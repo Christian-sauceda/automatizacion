@@ -5,7 +5,7 @@ require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 
-$Id_objeto = 126;
+$Id_objeto = 9257;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -26,9 +26,6 @@ if ($visualizacion == 0) {
 } else {
 
     bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', 'A LOS DETALLES DE GASTOS.');
-
-
- 
 }
 
 ob_end_flush();
@@ -38,7 +35,7 @@ ob_end_flush();
 <html>
 
 <head>
-<title></title>
+    <title></title>
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
     <script type="text/java pt" language="javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
@@ -78,7 +75,7 @@ ob_end_flush();
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>GESTIÓN DE GASTOS OPERATIVOS DE JEFATURA</h1>
+                        <h1>Gestión de Gastos Operativos de Jefatura</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -101,8 +98,8 @@ ob_end_flush();
 
             </div>
         </section>
-         <!-- inicio del modal -->
-         <div id="modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <!-- inicio del modal -->
+        <div id="modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -112,12 +109,12 @@ ob_end_flush();
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="editar_datos" class="needs-validation">
+                        <form id="editar_datos_gastos" class="needs-validation">
                             <!-- inicio del form -->
                             <div class="card card-default">
                                 <!--inciio primer card -->
                                 <div class="card-header" style="background-color: #ced2d7;">
-                                    <h3 class="card-title"><strong>TIPOS DE GASTOS</strong> </h3>
+                                    <h3 class="card-title"><strong>EDICIÓN DE GASTOS</strong> </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                                     </div>
@@ -126,15 +123,26 @@ ob_end_flush();
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12">
-                                            <label for="">Fecha</label><br>
-                                            <input type="text" class="form-control" id="datepicker" name="fecha_recurso_ed" placeholder="dd/mm/yyyy" required> <br>
-                                            <label for="">Nombre Gasto</label><br>
-                                            <input type="text" class="form-control" id="nombre_gasto" name="nombre_gasto" maxlength="20" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('nombre_recurso_ed');" onkeypress="return sololetras(event)" required><br>
-                                        </div>
-                                        <br>
-                                        <div class="col-12">
-                                            <label for="">Descripción</label><br>
-                                            <textarea cols="20" rows="5" class="form-control" id="desc_gasto" name="desc_gasto" maxlength="100" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('descripcion_ed');" onkeypress="return sololetras(event)" required></textarea>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="">Cantidad</label>
+                                                    <input type="text" name="cantidad_gasto_detalle" id="cantidad_gasto_detalle" class="form-control" value=""onkeypress="return solonumeros(event)" oncopy="return false" onpaste="return false" required> 
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="">Precio</label>
+                                                    <input type="text" name="precio_gasto_detalle" id="precio_gasto_detalle" class="form-control" value=""onkeypress="return solonumeros(event)" oncopy="return false" onpaste="return false" required> 
+                                                </div>
+                                            </div> <br>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="">Nombre Gasto</label>
+                                                    <input type="text" name="nombre_gasto_detalle" id="nombre_gasto_detalle" class="form-control" maxlength="20" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('nombre_gasto_detalle');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" required> 
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="">Descripción Gasto</label>
+                                                    <input type="text" name="desc_gasto_detalle" id="desc_gasto_detalle" class="form-control" maxlength="255" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('desc_gasto_detalle');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" required> 
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -156,7 +164,7 @@ ob_end_flush();
             <div class="card-body  ">
                 <div class="row">
                     <div class="col-9">
-                        <h3 class="card-title">DETALLES DE REGISTRO DE GASTOS</h3>
+                        <h3 class="card-title">Detalles de Registro de Gastos</h3>
                     </div>
                     <div class="col-3">
                         <a href="../vistas/agregar_detalles_gastos.php" class="btn btn-success btn-m">Agregar Detalles Gastos</a>
@@ -175,7 +183,7 @@ ob_end_flush();
             <div class="container-fluid">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">GASTOS DETALLES</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Gastos Detalles</a>
                     </li>
                     <!-- <li class="nav-item">
             <a class="nav-link" id="movimientos-tab" data-toggle="tab" href="#movimientos" role="tab" aria-controls="movimientos" aria-selected="false">CRAED</a>
@@ -193,9 +201,9 @@ ob_end_flush();
                                                     <tr>
                                                         <th scope="col">ID</th>
                                                         <th scope="col">NOMBRE</th>
-                                                        <th scope="col">CANTIDAD</th>
-                                                        <th scope="col">DESCRIPCION</th>
+                                                        <th scope="col">DESCRIPCIÓN</th>
                                                         <th scope="col">PRECIO</th>
+                                                        <th scope="col">CANTIDAD</th>
                                                         <th scope="col">TOTAL</th>
                                                         <th scope="col">NOMBRE GASTO</th>
                                                         <th scope="col">ELIMINAR</th>
@@ -250,11 +258,10 @@ ob_end_flush();
       });
     });
   </script> -->
-  
-    <script type="text/javascript">
 
-    //esto hasta 
-    var currentdate = new Date();
+    <script type="text/javascript">
+        //esto hasta 
+        var currentdate = new Date();
         var datetime = "Fecha: " + currentdate.getDate() + "/" +
             (currentdate.getMonth() + 1) + "/" +
             currentdate.getFullYear() + " Hora " +
@@ -399,12 +406,35 @@ ob_end_flush();
                     {
                         "data": null,
                         defaultContent: '<center> <button id="editar_detalle_gasto" data-toggle="modal" data-target="#modal" class="btn  btn-warning btn - m">Editar</center>'
-                    },//pendiente de agregar la edicion
+                    }, //pendiente de agregar la edicion
 
                 ],
             });
 
             table.columns([0]).visible(false);
+
+            $('#tabla_detalles_gastos tbody').on('click', '#editar_detalle_gasto', function() { //?evento para la edicion de un gasto
+                var fila = table.row($(this).parents('tr')).data();
+                var id_detalle_tipo_gasto = fila.id_detalle_tipo_gasto;
+                var nombre = fila.nombre;
+                var descripcion = fila.descripcion;
+                var cantidad = fila.cantidad;
+                var precio_aprox = fila.precio_aprox;
+
+                localStorage.removeItem('id_detalle_edit');
+                localStorage.setItem('id_detalle_edit', id_detalle_tipo_gasto);
+
+
+                console.log(id_detalle_tipo_gasto);
+
+                document.getElementById("cantidad_gasto_detalle").value = cantidad;
+                document.getElementById("precio_gasto_detalle").value = precio_aprox;
+                document.getElementById("nombre_gasto_detalle").value = nombre;
+                document.getElementById("desc_gasto_detalle").value = descripcion;
+
+            }); //?fin evento para la edicion de un gasto
+
+
 
             $('#tabla_detalles_gastos tbody').on('click', '#eliminar_datell_gasto', function() {
                 var fila = table.row($(this).parents('tr')).data();
@@ -467,11 +497,54 @@ ob_end_flush();
             viewMode: "years",
             minViewMode: "years"
         });
+
+
+        const btn_editar = document.getElementById('guardar_edicion_gasto');
+        const form_edicion = document.getElementById('editar_datos_gastos');
+
+        btn_editar.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            var form_enviar = new FormData(form_edicion);
+            form_enviar.append('id_gasto', localStorage.getItem('id_detalle_edit'));
+            form_enviar.append('editar_gastos_detalle', 1);
+
+
+            if (form_edicion.checkValidity() === false) {
+                e.preventDefault();
+                e.stopPropagation();
+                form_edicion.classList.add('was-validated')
+            } else {
+                fetch('../Controlador/action.php', {
+                        method: 'POST',
+                        body: form_enviar
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        //console.log(data);
+                        if (data == 'exito') {
+                            swal(
+                                'Cambiado!',
+                                '!Su registro ha sido cambiado!',
+                                'success'
+                            )
+                            $('#tabla_detalles_gastos').DataTable().ajax.reload();                            
+                            $('.modal').modal('toggle');
+                        } else {
+                            swal(
+                                'Error',
+                                'A ocurrido un error en la consulta!',
+                                'error'
+                            )
+                        }
+                    })
+            }
+        });
     </script>
 </body>
 
 </html>
-
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>
 
 <script>
     //este script srive para validar los campos del modal
@@ -514,4 +587,3 @@ ob_end_flush();
     });
     //fin validacion  
 </script>
-

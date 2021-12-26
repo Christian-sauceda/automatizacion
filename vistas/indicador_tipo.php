@@ -10,7 +10,7 @@ require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 require_once('../clases/funcion_permisos.php');
 
-$Id_objeto = 131;
+$Id_objeto = 9262;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -54,7 +54,7 @@ ob_end_flush();
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>CREAR UN NUEVO TIPO DE INDICADOR DE GESTIÓN</h1>
+                        <h1>Crear Nuevo Tipo de Indicadores de Gestión</h1>
                     </div>
 
                     <div class="col-sm-6">
@@ -78,7 +78,7 @@ ob_end_flush();
 
                 <div class="card card-default ">
                     <div class="card-header center">
-                        <h3 class="card-title">NUEVO TIPO DE INDICADOR DE GESTIÓN</h3>
+                        <h3 class="card-title">Nuevo Tipo de Indicador de Gestión</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -104,12 +104,12 @@ ob_end_flush();
                                                 <label for="">Fecha</label><br>
                                                 <input type="text" class="form-control" id="datepicker" name="fecha_indicador" placeholder="dd/mm/yyyy" required> <br>
                                                 <label for="">Nombre Indicador</label><br>
-                                                <input type="text" class="form-control" id="nombre_indicador" name="nombre_indicador" maxlength="20" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('nombre_indicador');" onkeypress="return sololetras(event)" required><br>
+                                                <input type="text" class="form-control" id="nombre_indicador" name="nombre_indicador" maxlength="20" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('nombre_indicador');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="nombre indicador" required><br>
                                             </div>
                                             <br>
                                             <div class="col-12">
                                                 <label for="">Descripción</label><br>
-                                                <textarea cols="20" rows="5" class="form-control" id="descripcion" name="descripcion" maxlength="50" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('descripcion');" onkeypress="return sololetras(event)" required></textarea>
+                                                <textarea cols="20" rows="5" class="form-control" id="descripcion" name="descripcion" maxlength="255" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('descripcion');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Descripción" required></textarea>
                                             </div>
 
                                             <div class="col-12">
@@ -133,6 +133,7 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>
 <script src="../js/newIndicador.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" />

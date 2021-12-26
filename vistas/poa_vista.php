@@ -5,8 +5,12 @@ require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 
-$Id_objeto = 107;
+
+$Id_objeto = 9238;
+
+
 $visualizacion = permiso_ver($Id_objeto);
+
 
 if ($visualizacion == 0) {
     echo '<script type="text/javascript">
@@ -22,18 +26,14 @@ if ($visualizacion == 0) {
                             </script>';
 } else {
 
-    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', 'AL PLAN OPERATIVO ANUAL.');
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', 'A PLAN OPERATIVO ANUAL POA.');
 
 
- 
+  
 }
 
-ob_end_flush();
-
-
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -102,12 +102,12 @@ ob_end_flush();
                                     <div class="modal-body">
                                         <form id="poa_form">
                                             <div class="container">
-                                                <label for="">Nombre planificación</label>
-                                                <input type="text" id="n_planificacion" name="n_planificacion" class="form-control" required>
+                                                <label for="">Nombre Planificación</label>
+                                                <input type="text" id="n_planificacion" name="n_planificacion" class="form-control"  maxlength="150" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('n_planificacion');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event) "placeholder="Nombre Planificación" required>
                                                 <label for="">Fecha</label>
                                                 <input type="text" id="datepicker" name="txt_fecha_ingreso_ca" onkeydown="return false" class="form-control" placeholder="AÑO" required="">
                                                 <label for="">Descripción</label>
-                                                <textarea class="form-control" id="descripción" name="descripcion" rows="3" required></textarea>
+                                                <textarea class="form-control" id="descripcion" name="descripcion" rows="3"  maxlength="50" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('descripcion');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Descripción" required></textarea>
                                                 <input type="text" id="id_plani_edit" name="id_plani_edit" hidden>
                                             </div>
                                         </form>
@@ -127,7 +127,7 @@ ob_end_flush();
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
-                            <li class="breadcrumb-item active"><a href="../vistas/g_planificacionjefatura_vista.php">POA</a></li>
+                            <li class="breadcrumb-item active"><a href="../vistas/planificacion_academica_vista.php">POA</a></li>
                         </ol>
                     </div>
                 </div>
@@ -139,7 +139,7 @@ ob_end_flush();
             <div class="card-body  ">
                 <div class="row">
                     <div class="col-9">
-                        <h3 class="card-title">Registro de planificaciones</h3>
+                        <h3 class="card-title">Registro de Planificaciones</h3>
                     </div>
                     <div class="col-3">
                         <a href="#" class="btn btn-success btn-m" data-toggle="modal" data-target=".poa_modal" onclick="cambiarNombre();">Nueva planificación</a>
@@ -223,19 +223,6 @@ ob_end_flush();
                     [0, 'desc']
                 ],
                 "responsive": true,
-                "language": {
-                    "lengthMenu": "Mostrar _MENU_ Registros",
-                    "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando la pagina de _PAGE_ de _PAGES_",
-                    "infoEmpty": "No records available",
-                    "infoFiltered": "(Filtrado de _MAX_ Registros Totales)",
-                    "search": "Buscar:",
-                    "pagingType": "full_numbers",
-                    "oPaginate": {
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                },
                 "ajax": {
                     "url": "../clases/tabla_planificacion.php",
                     "type": "POST",
@@ -258,7 +245,7 @@ ob_end_flush();
                     },
                     {
                         "data": null,
-                        defaultContent: '<center><button id="add_objetivos" class="btn btn-primary"><i class="fas fa-link"></i></button></center>'
+                        defaultContent: '<center><button id="add_objetivos" class="btn btn-primary"><i class="fas fa-arrow-right"></i></button></center>'
                     },
                     {
                         "data": null,
@@ -478,5 +465,4 @@ ob_end_flush();
 </body>
 
 </html>
-
-
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>

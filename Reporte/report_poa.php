@@ -1,16 +1,22 @@
 <?php
 require '../vendor/autoload.php';
+require ('../clases/Conexion.php');
 
-$db_host = 'localhost';
-$db_username = 'root';
-$db_password = '';
-$db_name = 'informat_desarrollo_automatizacion';
+// $db_host = '51.222.86.251';
+// $db_username = 'informat_desarrollo';
+// $db_password = '^Kwd{PE^(L&#';
+// $db_name = 'informat_desarrollo_automatizacion';
 
-$db = new mysqli($db_host, $db_username, $db_password, $db_name);
+// $db_host = 'localhost';
+// $db_username = 'root';
+// $db_password = '';
+// $db_name = 'informat_desarrollo_automatizacion';
 
-if ($db->connect_error) {
-    die("Unable to connect database: " . $db->connect_error);
-}
+// $db = new mysqli($db_host, $db_username, $db_password, $db_name);
+
+// if ($db->connect_error) {
+//     die("Unable to connect database: " . $db->connect_error);
+// }
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -64,7 +70,7 @@ if (isset($_GET['enviar'])) {
     $spreadsheet->getActiveSheet()->getStyle('A3:A5')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
     $spreadsheet->getActiveSheet()->getStyle('A3:A5')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
     $spreadsheet->getActiveSheet()->getStyle('A3:K5')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
-    $spreadsheet->getActiveSheet()->getStyle('A3:K5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('063970');
+    $spreadsheet->getActiveSheet()->getStyle('A3:K5')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('063970');
 
     $spreadsheet->getActiveSheet(1)->mergeCells('B3:B5');
     $spreadsheet->getActiveSheet()->getCell('B3')->setValue('RESULTADO ESPERADO');
@@ -111,13 +117,22 @@ if (isset($_GET['enviar'])) {
     $spreadsheet->getActiveSheet()->getCell('J5')->setValue('PLANIFICADO');
     $spreadsheet->getActiveSheet()->getCell('K5')->setValue('PLANIFICADO');
 
-    $query_planificacion = $db->query("SELECT * FROM tbl_planificaciones WHERE id_planificacion = " . $id_planificacion . "");
-    $fila_plan = $query_planificacion->fetch_assoc();
-    $activeSheet->setCellValue('B1', 'Nombre POA: ' . $fila_plan['nombre'] . ', Año ejecución: ' . $fila_plan['anio'] . ', Fecha de archivo: ' . $fecha);
 
+
+    $sql="SELECT * FROM tbl_planificaciones WHERE id_planificacion = " . $id_planificacion . "";
+	$resultado = $mysqli->query($sql);
+	$fila_plan = $resultado->fetch_assoc();
+
+    // $query_planificacion = $db->query("SELECT * FROM tbl_planificaciones WHERE id_planificacion = " . $id_planificacion . "");
+    // $fila_plan = $query_planificacion->fetch_assoc();
+    $activeSheet->setCellValue('B1', 'Nombre POA: ' . $fila_plan['nombre'] . ', Año ejecución: ' . $fila_plan['anio'] . ', Fecha de archivo: ' . $fecha);
     $spreadsheet->getActiveSheet()->getStyle('B1')->getFont()->setSize(16);
 
-    $query = $db->query("SELECT `id_objetivo`,`nombre_objetivo` FROM `tbl_objetivos_estrategicos` WHERE `id_planificacion` = '" . $id_planificacion . "'");
+
+    $sql1 = "SELECT `id_objetivo`,`nombre_objetivo` FROM `tbl_objetivos_estrategicos` WHERE `id_planificacion` = '" . $id_planificacion . "'";
+    $query = $mysqli->query($sql1);
+    //$query = $db->query("SELECT `id_objetivo`,`nombre_objetivo` FROM `tbl_objetivos_estrategicos` WHERE `id_planificacion` = '" . $id_planificacion . "'");
+
     if ($query->num_rows > 0) {
         $i = 6;
         $ind = 6;
@@ -128,7 +143,9 @@ if (isset($_GET['enviar'])) {
             //$activeSheet->setCellValue('C' . $i, $row['descripcion']);
             $activeSheet->setCellValue('A' . $ind, $fila_obj['nombre_objetivo']);
             $i++;
-            $query2 = $db->query("SELECT `id_indicador`, `descripcion`,`resultados` FROM `tbl_indicadores` WHERE `id_objetivo` =" . $fila_obj['id_objetivo'] . "");
+            $sql2 = "SELECT `id_indicador`, `descripcion`,`resultados` FROM `tbl_indicadores` WHERE `id_objetivo` =" . $fila_obj['id_objetivo'] . "";
+            $query2 = $mysqli->query($sql2);
+            //$query2 = $db->query("SELECT `id_indicador`, `descripcion`,`resultados` FROM `tbl_indicadores` WHERE `id_objetivo` =" . $fila_obj['id_objetivo'] . "");
             $row_cnt = $query2->num_rows;
             $total = $row_cnt + $ind - 1;
             while ($fila_ind = $query2->fetch_assoc()) {
@@ -138,22 +155,29 @@ if (isset($_GET['enviar'])) {
                 $activeSheet->setCellValue('C' . $ind, $fila_ind['descripcion']);
                 $ind++;
 
-                $query5 = $db->query("SELECT tr.descripcion_responsable as responsables from `tbl_responsables` tr, `tbl_indicadores` ti, `tbl_indica_responsables` tir  WHERE tir.id_indicador = ti.id_indicador
-                AND tr.id_responsables = tir.id_responsables AND ti.id_indicador =" . $fila_ind['id_indicador'] . " ");
+                $sql3 = "SELECT tr.descripcion_responsable as responsables from `tbl_responsables` tr, `tbl_indicadores` ti, `tbl_indica_responsables` tir  WHERE tir.id_indicador = ti.id_indicador
+                AND tr.id_responsables = tir.id_responsables AND ti.id_indicador =" . $fila_ind['id_indicador'] . " ";
+                $query5 = $mysqli->query($sql3);
+                // $query5 = $db->query("SELECT tr.descripcion_responsable as responsables from `tbl_responsables` tr, `tbl_indicadores` ti, `tbl_indica_responsables` tir  WHERE tir.id_indicador = ti.id_indicador
+                // AND tr.id_responsables = tir.id_responsables AND ti.id_indicador =" . $fila_ind['id_indicador'] . " ");
                 while ($fila_res = $query5->fetch_assoc()) {
                     $spreadsheet->getActiveSheet()->getCell('G' . $ind)->setValue($fila_res['responsables']);
                 } //! fin del while de responsables
 
 
+                $sql4 = "SELECT `trimestre_1`, `trimestre_2`, `trimestre_3`, `trimestre_4` FROM `tbl_metas` WHERE id_indicador = " . $fila_ind['id_indicador'] . " ";
+                $query4 = $mysqli->query($sql4);
 
-                $query4 = $db->query("SELECT `trimestre_1`, `trimestre_2`, `trimestre_3`, `trimestre_4` FROM `tbl_metas` WHERE id_indicador = " . $fila_ind['id_indicador'] . " ");
+                //$query4 = $db->query("SELECT `trimestre_1`, `trimestre_2`, `trimestre_3`, `trimestre_4` FROM `tbl_metas` WHERE id_indicador = " . $fila_ind['id_indicador'] . " ");
                 while ($fila_met = $query4->fetch_assoc()) {
                     $spreadsheet->getActiveSheet()->getCell('H' . $ind)->setValue($fila_met['trimestre_1']);
                     $spreadsheet->getActiveSheet()->getCell('I' . $ind)->setValue($fila_met['trimestre_2']);
                     $spreadsheet->getActiveSheet()->getCell('J' . $ind)->setValue($fila_met['trimestre_3']);
                     $spreadsheet->getActiveSheet()->getCell('K' . $ind)->setValue($fila_met['trimestre_4']);
                     $ind++;
-                    $query3 = $db->query("SELECT id_actividades_poa, nombre_actividad from tbl_actividades_poa WHERE id_indicador =" . $fila_ind['id_indicador'] . "");
+                    $sql5 = "SELECT id_actividades_poa, nombre_actividad from tbl_actividades_poa WHERE id_indicador =" . $fila_ind['id_indicador'] . "";
+                    $query3 = $mysqli->query($sql5);
+                    //$query3 = $db->query("SELECT id_actividades_poa, nombre_actividad from tbl_actividades_poa WHERE id_indicador =" . $fila_ind['id_indicador'] . "");
 
                     while ($fila_act = $query3->fetch_assoc()) {
                         $activeSheet->setCellValue('D' . $act, $fila_act['nombre_actividad']);
@@ -162,11 +186,18 @@ if (isset($_GET['enviar'])) {
                         // WHERE ap.id_actividades_poa = av.id_actividades_poa 
                         // AND  av.id_verificacion = mv.id_verificacion AND ap.id_actividades_poa =" . $fila_act['id_actividades_poa'] . "");
 
-                        $query6 = $db->query("SELECT mv.descripcion, po.descripcion as poblacion FROM tbl_medio_verificacion mv, tbl_actividades_poa ap, tbl_act_verficacion av, tbl_poblacion_objetivo po, tbl_act_poblacion_objetivo apo
+                        $sql6 = "SELECT mv.descripcion, po.descripcion as poblacion FROM tbl_medio_verificacion mv, tbl_actividades_poa ap, tbl_act_verficacion av, tbl_poblacion_objetivo po, tbl_act_poblacion_objetivo apo
                         WHERE ap.id_actividades_poa = av.id_actividades_poa 
                         AND po.id_poblacion_objetivo = apo.id_poblacion_objetivo
                         AND ap.id_actividades_poa = apo.id_actividades_poa
-                        AND  av.id_verificacion = mv.id_verificacion AND ap.id_actividades_poa = " . $fila_act['id_actividades_poa'] . "");
+                        AND  av.id_verificacion = mv.id_verificacion AND ap.id_actividades_poa = " . $fila_act['id_actividades_poa'] . "";
+                        $query6 = $mysqli->query($sql6);
+
+                        // $query6 = $db->query("SELECT mv.descripcion, po.descripcion as poblacion FROM tbl_medio_verificacion mv, tbl_actividades_poa ap, tbl_act_verficacion av, tbl_poblacion_objetivo po, tbl_act_poblacion_objetivo apo
+                        // WHERE ap.id_actividades_poa = av.id_actividades_poa 
+                        // AND po.id_poblacion_objetivo = apo.id_poblacion_objetivo
+                        // AND ap.id_actividades_poa = apo.id_actividades_poa
+                        // AND  av.id_verificacion = mv.id_verificacion AND ap.id_actividades_poa = " . $fila_act['id_actividades_poa'] . "");
 
                         while ($fila_mv = $query6->fetch_assoc()) {
                             $activeSheet->setCellValue('E' . $act, $fila_mv['descripcion']);
@@ -192,7 +223,7 @@ if (isset($_GET['enviar'])) {
         $spreadsheet->getActiveSheet()->setCellValue('A6', 'INTRODUZCA DATOS AL PROYECTO');
     }
 
-    $filename = 'areas.xlsx';
+    $filename = 'POA.xlsx';
 
     header('Content-Type: application/vnd.ms-excel');
     header('Content-Disposition: attachment;filename=' . $filename);

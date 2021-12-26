@@ -10,7 +10,7 @@ require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 require_once('../clases/funcion_permisos.php');
 
-$Id_objeto = 127;
+$Id_objeto = 9258;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -62,7 +62,7 @@ ob_end_flush()
                     <div class="col-sm-6">
 
 
-                        <h1>CREAR UN NUEVO TIPO DE RECURSO</h1>
+                        <h1>Crear Nuevo Tipo de Recurso</h1>
                     </div>
 
                     <div class="col-sm-6">
@@ -86,7 +86,7 @@ ob_end_flush()
 
                 <div class="card card-default ">
                     <div class="card-header center">
-                        <h3 class="card-title">NUEVO TIPO DE RECURSO</h3>
+                        <h3 class="card-title">Nuevo Tipo de Recurso</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -112,12 +112,12 @@ ob_end_flush()
                                                 <label for="">Fecha</label><br>
                                                 <input type="text" class="form-control" id="datepicker" name="fecha_recurso" placeholder="dia/mes/año" required> <br>
                                                 <label for="">Nombre Recurso</label><br>
-                                                <input type="text" class="form-control" id="nombre_recurso" name="nombre_recurso" maxlength="20" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('nombre_recurso');" onkeypress="return sololetras(event)"  required><br>
+                                                <input type="text" class="form-control" id="nombre_recurso" name="nombre_recurso" maxlength="20" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('nombre_recurso');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Nombre del recurso" required><br>
                                             </div>
                                             <br>
                                             <div class="col-12">
                                                 <label for="">Descripción</label><br>
-                                                <textarea cols="20" rows="5" class="form-control" id="descripcion" name="descripcion" maxlength="100" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('descripcion');" onkeypress="return sololetras(event)" required></textarea>
+                                                <textarea cols="20" rows="5" class="form-control" id="descripcion" name="descripcion" maxlength="100" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('descripcion');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="descripción" required></textarea>
                                             </div>
 
                                             <div class="col-12">
@@ -139,6 +139,8 @@ ob_end_flush()
     </div>
 </body>
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>
+
 <script src="../js/tipos_recursos.js"></script>  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" />

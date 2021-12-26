@@ -11,7 +11,7 @@ require_once('../clases/funcion_permisos.php');
 /*require_once('../Modelos/movil_segmentos_modelo.php');*/
 ////////////////declaracion de variables para la busqueda//////////
 
-$Id_objeto = 173;
+$Id_objeto = 10173;
 
 bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'Ingreso', 'A llenar Segmento');
 
@@ -118,7 +118,7 @@ if (isset($_REQUEST['msj'])) {
 
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Registro Segmento</h3>
+            <h3 class="card-title">Pantalla de seleccion de usuarios para un segmento.</h3>
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
             </div>

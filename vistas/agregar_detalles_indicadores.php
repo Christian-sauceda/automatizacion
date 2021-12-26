@@ -9,7 +9,6 @@ require_once('../vistas/pagina_inicio_vista.php');
 <html lang="en">
 
 <head>
-    <script src="../js/autologout.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -21,7 +20,7 @@ require_once('../vistas/pagina_inicio_vista.php');
         <div class="card">
             <div class="card-body">
                 <div class="col-sm-6">
-                    <h3>AGREGAR NUEVOS DETALLES DE INDICADORES DE GESTIÓN ACADEMICA</h3>
+                    <h3>Agregar Nuevos Detalles de Indicadores de Gestión</h3>
                 </div>
                 <hr>
                 <div class="col-sm-8">
@@ -36,11 +35,11 @@ require_once('../vistas/pagina_inicio_vista.php');
                         <!-- /.card-header -->
                         <div class="card-body">
                             <form id="form_detalles_r">
-                                <label for="">SELECCIONE EL TIPO DE INDICADOR</label>
+                                <label for="">Seleccione el Tipo de Indicador</label>
                                 <select name="" id="tipos_indicadores" class="form-control">
                                 </select>
-                                <label for="">Descripcion</label>
-                                <input type="text" textarea cols="20" rows="5" class="form-control" id="descp_detalle" name="descp_detalle" required>
+                                <label for="">Descripción</label>
+                                <input type="text" textarea cols="20" rows="5" class="form-control" id="descp_detalle" name="descp_detalle" maxlength="255" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('descp_detalle');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Descripción indicador" required>
                                 <br>
                                 <button class="btn btn-primary" id="guardar_detalles_indicadores">Guardar</button>
                             </form>
@@ -51,8 +50,9 @@ require_once('../vistas/pagina_inicio_vista.php');
         </div>
     </div>
 </body>
-
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>
+
 <script>
     function cargar_detalle_indicador() {
         const form_indicador_tipo = new FormData();

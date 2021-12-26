@@ -26,7 +26,7 @@ if ($opcion == 'editar') {
   $genero = isset($_POST["genero"]) ? $_POST["genero"] : "";
 
 ///Logica para el que se repite
-$sqlexiste = ("select count(nombre) as nombre  from tbl_movil_segmentos where nombre='$nombre'");
+$sqlexiste = "select count(nombre) as nombre from tbl_movil_segmentos where nombre='$nombre'";
 //Obtener la fila del query
 $existe = mysqli_fetch_assoc($mysqli->query($sqlexiste));
 
@@ -36,7 +36,7 @@ if ($_POST['nombre']  <> ' ' and  $_POST['descripcion'] <> '') {
   /* Condicion para que no se repita el rol*/
   if ($existe['nombre'] == 1) {
     //redireccion ya que el nombre segmento existe
- 	header('location: ../vistas/movil_crear_segmento.php?msj=1'); 
+ 	header('location: ../vistas/movil_crear_segmento_vista.php?msj=1'); 
   } else {
     /* Query para que haga el insert*/
     $sql = "INSERT into tbl_movil_segmentos VALUES (null,'$nombre','$descripcion','$creadopor',sysdate())";

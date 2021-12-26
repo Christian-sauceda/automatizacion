@@ -1,3 +1,41 @@
+<?php
+ob_start();
+//session_start();
+require_once('../clases/Conexion.php');
+require_once('../vistas/pagina_inicio_vista.php');
+require_once('../clases/funcion_bitacora.php');
+require_once('../clases/funcion_visualizar.php');
+
+
+$Id_objeto = 9246;
+
+
+$visualizacion = permiso_ver($Id_objeto);
+
+
+if ($visualizacion == 0) {
+    echo '<script type="text/javascript">
+                              swal({
+                                   title:"",
+                                   text:"Lo sentimos no tiene permiso de visualizar la pantalla",
+                                   type: "error",
+                                   showConfirmButton: false,
+                                   timer: 3000
+                                });
+                           window.location = "../vistas/actividades_vista.php";
+
+                            </script>';
+} else {
+
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', 'A ACTIVIDADES POA.');
+
+
+  
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -34,8 +72,8 @@
                             <th scope="col">MEDIO VERIFICACIÓN</th>
                             <th scope="col">ID POBLACIÓN</th>
                             <th scope="col">POBLACIÓN OBJETIVO</th>
-                            <th scope="col">EDITAR</th>
-                            <th scope="col">ELIMINAR</th>
+                            <th scope="col">ACCIÓN</th>
+                            <th scope="col">ACCIÓN</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -56,15 +94,15 @@
                             <form id="agregar_actividades">
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">Nombre Actividad</label>
-                                    <input type="text" class="form-control" id="n_actividad" name="n_actividad" maxlength="90" placeholder="Actividad" required>
+                                    <input type="text" class="form-control" id="n_actividad" name="n_actividad" maxlength="50" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('n_actividad');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Actividad" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="formGroupExampleInput2">Medios de verificacion</label>
-                                    <input type="text" class="form-control" id="m_verificacion" name="m_verificacion" maxlength="150" placeholder="Verificación" required>
+                                    <label for="formGroupExampleInput2">Medios de Verificacion</label>
+                                    <input type="text" class="form-control" id="m_verificacion" name="m_verificacion" maxlength="50" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('m_verificacion');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Verificación" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="formGroupExampleInput3">Población objetivo</label>
-                                    <input type="text" class="form-control" id="p_objetivo" name="p_objetivo" maxlength="150" placeholder="Población" required>
+                                    <label for="formGroupExampleInput3">Población Objetivo</label>
+                                    <input type="text" class="form-control" id="p_objetivo" name="p_objetivo" maxlength="50" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('p_objetivo');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Población" required>
                                 </div>
                                 <div class="form-group d-flex">
                                     <div class="ml-auto p-2" id="edicion_actividades" hidden>
@@ -186,3 +224,4 @@
 </script>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>

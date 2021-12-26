@@ -50,8 +50,7 @@ class mostrarChat
                          <span class='block'>$mensaje</span>
                          <!--<span class='block text-xs text-right'>10:30pm</span>-->
                      </div>
-                 </div>
-             ";
+                 </div>";
             }
         }
         echo   "</li>
@@ -59,9 +58,6 @@ class mostrarChat
     </div>
     
     <div class='w-full py-2 px-2 flex items-center justify-between border-t border-gray-300' style='background-color:#007BFF;'>
-    <button>
-    <i class='fas fa-microphone' style='font-size: 1.3rem; color:antiquewhite'></i></i>
-    </button>
     <input aria-placeholder='Escribe un mensaje aquí' placeholder='Escribe un mensaje aquí' class='py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700' type='text' name='message' id='mensaje' />
 
     <button class='outline-none focus:outline-none' onclick='enviar($id_chat,$id_usuario);'>

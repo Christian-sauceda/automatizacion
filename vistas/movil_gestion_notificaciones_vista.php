@@ -8,8 +8,9 @@ require_once('../clases/Conexion.php');
 require_once('../clases/funcion_bitacora_movil.php');
 require_once('../clases/funcion_visualizar.php');
 require_once('../clases/funcion_permisos.php');
+require_once('../Controlador/movil_helpers_controlador.php');
 date_default_timezone_set("America/Tegucigalpa");
-$Id_objeto = 169;
+$Id_objeto = 10169;
 $visualizacion = permiso_ver($Id_objeto);
 if ($visualizacion == 0) {
     echo '<script type="text/javascript">
@@ -23,9 +24,10 @@ if ($visualizacion == 0) {
   window.location = "../vistas/pagina_principal_vista.php";
    </script>';
 } else {
+    $_SESSION['archivos_aceptado_notificacion'] = parametrizacion('ArchivoAceptadoNotificacion');
     bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO', 'A GESTIÓN DE NOTIFICACIONES ');
 }
-$id = 0;
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -124,10 +126,10 @@ if (isset($_REQUEST['msj'])) {
 <head>
     <script src="../js/autologout.js"></script>
     <title></title>
-    <script src="../js/movil_notificacion.js"></script>
+    <script src="../js/movil_notificacion.js" defer></script>
 </head>
 
-<body onload="readProducts()">
+<body>
 
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -154,7 +156,10 @@ if (isset($_REQUEST['msj'])) {
         <!--Pantalla 2-->
         <div class="card card-default">
             <div class="card-header">
-                <div class="dt-buttons btn-group"><button class="btn btn-secondary buttons-pdf buttons-html5 btn-danger" tabindex="0" aria-controls="tabla2" type="button" id="GenerarReporte" title="Exportar a PDF"><span><i class="fas fa-file-pdf"></i> </span> </button>
+            <h3 class="card-title">Listado de notificaciones existentes en el sistema.</h3><br>
+            <hr>
+            <div class="dt-buttons btn-group">
+                    <button class="btn btn-secondary buttons-pdf buttons-html5 btn-danger" tabindex="0" aria-controls="tabla2" type="button" id="GenerarReporte" title="Exportar a PDF"><span><i class="fas fa-file-pdf"></i> </span> </button>
                 </div>
                 <a class="btn btn-primary btn-xs float-right" href="../vistas/movil_crear_notificacion_vista.php">Nuevo</a>
                 <!--buscador-->
@@ -167,7 +172,9 @@ if (isset($_REQUEST['msj'])) {
                 </div><!-- /.card-body -->
             </div>
         </div>
-
+        <?php
+        if (isset($_GET['id'])):
+        ?>
         <form action="../Controlador/movil_notificacion_controlador.php?op=editar&id=<?php echo $id ?>" method="post" data-form="update" autocomplete="off" enctype="multipart/form-data">
 
             <div class="modal fade" tabindex="-1" id="modal_modificar_notificacion">
@@ -188,12 +195,12 @@ if (isset($_REQUEST['msj'])) {
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="titulo"> Título:</label>
-                                            <input autofocus class="form-control" type="text" value="<?php echo $_SESSION['txtTitulo'] ?>" maxlength="90" id="titulo" name="titulo" required onpaste="return false" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
+                                            <input autofocus class="form-control" type="text" value="<?php echo $_SESSION['txtTitulo'] ?>" minlength="30" maxlength="90" id="titulo" name="titulo" required onpaste="return false" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="Contenido">Contenido:</label>
-                                            <input class="form-control" type="text" value="<?php echo $_SESSION['txtDescripcion'] ?>" maxlength="255" id="Contenido" name="Contenido" required onpaste="return false" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
+                                            <input class="form-control" type="text" value="<?php echo $_SESSION['txtDescripcion'] ?>" minlength="100" maxlength="255" id="Contenido" name="Contenido" required onpaste="return false" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
                                         </div>
 
                                         <div class="form-group">
@@ -239,8 +246,7 @@ if (isset($_REQUEST['msj'])) {
                                         <div class="form-group">
                                             <!-- FECHA DE PUBLICACION txt_fecha_Publicacion -->
                                             <label for="txt_fecha_Publicacion">Fecha y Hora de Publicación:</label>
-                                            <input class="form-control" type="datetime-local" id="txt_fecha_Publicacion" value="<?php echo date("Y-m-d\TH:i", $_SESSION['txtFecha']); ?>" min="<?php echo date("Y-m-d\TH:i", strtotime(date("Y-m-d\TH:i") . "+ 1 hour")); ?>" max="<?php echo date("Y-m-d\TH:i", strtotime(date("Y-m-d\TH:i") . "+ 1 week")); ?>" name="txt_fecha_Publicacion" required onkeydown="return false">
-
+                                            <input class="form-control" type="datetime-local" id="txt_fecha_Publicacion" value="<?php echo date("Y-m-d\TH:i", $_SESSION['txtFecha']); ?>" min="<?php echo date("Y-m-d\TH:i"); ?>" max="<?php echo date("Y-m-d\TH:i", strtotime(date("Y-m-d\TH:i") . "+ 1 week")); ?>" name="txt_fecha_Publicacion" required onkeydown="return false">
                                         </div>
                                         <div class="form-group" style="width: 300px;">
                                             <!-- archivos adjuntos -->
@@ -255,12 +261,12 @@ if (isset($_REQUEST['msj'])) {
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td><?php echo str_replace('http://desarrollo.informaticaunah.com', '..', $_SESSION['txtUrl']); ?></td>
-                                                            <?php if ($_SESSION['txtUrl'] != 'null') : ?>
+                                                            <td><?php echo str_replace(base_url, '..', $_SESSION['txtUrl']); ?></td>
+                                                            <?php if ($_SESSION['txtUrl'] != 'null') :?>
                                                                 <td><a onclick="eliminar_img(<?php echo $id; ?>);" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a></td>
-                                                            <?php else : ?>
+                                                            <?php else:?>
                                                                 <td><a class="btn btn-danger btn-xs" disabled><i class="fa fa-trash"></i></a></td>
-                                                            <?php endif; ?>
+                                                            <?php endif;?>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -271,7 +277,7 @@ if (isset($_REQUEST['msj'])) {
                                                 <label>No necesita mas imagenes!</label>
                                             <?php else : ?>
                                                 <label> Nueva Imagen:</label>
-                                                <input class="form-control" type="file" class="form-control" id="subir_archivo" name="subir_archivo">
+                                                <input class="form-control" type="file" class="form-control" id="subir_archivo" name="subir_archivo" accept="<?php echo $_SESSION['archivos_aceptados_notificacion']?>">
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -293,6 +299,7 @@ if (isset($_REQUEST['msj'])) {
             <!-- /.  finaldel modal -->
 
         </form>
+        <?php endif;?>
         <script>
             //validar el tipo de archivo
             $(document).on('change', 'input[type="file"]', function() {

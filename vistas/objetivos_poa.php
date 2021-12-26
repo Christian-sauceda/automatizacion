@@ -5,7 +5,9 @@ require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 
-$Id_objeto = 109;
+$Id_objeto = 9240;
+
+
 $visualizacion = permiso_ver($Id_objeto);
 
 
@@ -23,17 +25,13 @@ if ($visualizacion == 0) {
                             </script>';
 } else {
 
-    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', 'OBJETIVOS POA.');
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', 'GESTIÓN DE OBJETIVOS POA.');
 
 
- 
+  
 }
 
-ob_end_flush();
-
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -82,10 +80,10 @@ ob_end_flush();
                                     <div class="modal-body">
                                         <form id="obj_form">
                                             <div class="container">
-                                                <label for="">Nombre objetivo</label>
-                                                <input type="text" id="n_objetivo" name="n_objetivo" class="form-control" maxlength="50" required>
+                                                <label for="">Nombre Objetivo</label>
+                                                <input type="text" id="n_objetivo" name="n_objetivo" class="form-control" maxlength="150" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('n_objetivo');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="nombre objetivo" required>
                                                 <label for="">Descripción</label>
-                                                <textarea class="form-control" id="obj_descripción" name="obj_descripción" rows="3" maxlength="100" required></textarea>
+                                                <textarea class="form-control" id="obj_descripción" name="obj_descripción" rows="3" maxlength="255" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('obj_descripción');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Descripción" required></textarea>
                                                 <input type="text" id="id_objetivo" name="id_objetivo_edit" hidden>
                                             </div>
                                         </form>
@@ -105,9 +103,8 @@ ob_end_flush();
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
-                            <li class="breadcrumb-item active"><a href="../vistas/poa_vista.php">POA</a></li>
+                            <li class="breadcrumb-item active"><a href="../vistas/planificacion_academica_vista.php">POA</a></li>
                         </ol>
-                        
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -123,7 +120,7 @@ ob_end_flush();
             <div class="card-body  ">
                 <div class="row">
                     <div class="col-9">
-                        <h3 class="card-title">Registro de objetivos</h3>
+                        <h3 class="card-title">Registro de Objetivos</h3>
                     </div>
                     <div class="col-3">
                         <!-- <button class="btn btn-warning" onclick="clearData();">Limpiar data</button>
@@ -219,19 +216,6 @@ ob_end_flush();
 
         var table = $('#tabla_objetivos').DataTable({
             data: data,
-            "language": {
-                    "lengthMenu": "Mostrar _MENU_ Registros",
-                    "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando la pagina de _PAGE_ de _PAGES_",
-                    "infoEmpty": "No records available",
-                    "infoFiltered": "(Filtrado de _MAX_ Registros Totales)",
-                    "search": "Buscar:",
-                    "pagingType": "full_numbers",
-                    "oPaginate": {
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                },
             columns: [{
                     data: 'id_objetivo'
                 },
@@ -480,3 +464,4 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>

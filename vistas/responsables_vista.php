@@ -5,7 +5,8 @@ require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 
-$Id_objeto = 133;
+
+$Id_objeto = 9247;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -25,19 +26,13 @@ if ($visualizacion == 0) {
                             </script>';
 } else {
 
-    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', 'A RESPONSABLES POA.');
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', 'RESPONSABLES POA.');
 
 
- 
+  
 }
 
-ob_end_flush();
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html>

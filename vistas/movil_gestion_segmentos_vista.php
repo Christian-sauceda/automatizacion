@@ -9,7 +9,7 @@ require_once('../clases/funcion_bitacora_movil.php');
 require_once('../clases/funcion_visualizar.php');
 require_once('../clases/funcion_permisos.php');
 date_default_timezone_set("America/Tegucigalpa");
-$Id_objeto = 171;
+$Id_objeto = 10171;
 $visualizacion = permiso_ver($Id_objeto);
 if ($visualizacion == 0) {
   echo '<script type="text/javascript">
@@ -141,7 +141,9 @@ if (isset($_REQUEST['msj'])) {
 
     <div class="card card-default">
       <div class="card-header">
-        <div class="dt-buttons btn-group"><button class="btn btn-secondary buttons-pdf buttons-html5 btn-danger" tabindex="0" aria-controls="tabla2" type="button" id="GenerarReporte" title="Exportar a PDF"><span><i class="fas fa-file-pdf"></i> </span> </button> </div>
+      <h3 class="card-title">Listado de segmentos existentes del sistema movil.</h3><br>
+      <hr>
+      <div class="dt-buttons btn-group"><button class="btn btn-secondary buttons-pdf buttons-html5 btn-danger" tabindex="0" aria-controls="tabla2" type="button" id="GenerarReporte" title="Exportar a PDF"><span><i class="fas fa-file-pdf"></i> </span> </button> </div>
         <a class="btn btn-primary btn-xs float-right" href="../vistas/movil_crear_segmento_vista.php">Nuevo</a>
         <!--buscador-->
         <div class="float-right mt-5 ml-5">

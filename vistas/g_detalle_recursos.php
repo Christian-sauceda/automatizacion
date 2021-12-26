@@ -5,7 +5,7 @@ require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 
-$Id_objeto = 117;
+$Id_objeto = 9248;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -71,7 +71,7 @@ ob_end_flush();
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>GESTIÓN DE RECURSOS OPERATIVOS DE JEFATURA</h1>
+                        <h1>Gestión de Recurso Operativos de Jefatura</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -120,16 +120,16 @@ ob_end_flush();
                                     <div class="row">
                                         <div class="col-12">
                                             <label for="">Nombre</label><br>
-                                            <input type="text" class="form-control" id="nombre_detalle" name="nombre_detalle" placeholder="Nombre" required> <br>
+                                            <input type="text" class="form-control" id="nombre_detalle" name="nombre_detalle" maxlength="255" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('nombre_detalle');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Nombre" required> <br>
                                             <label for="">Cantidad</label><br>
-                                            <input type="number" class="form-control" id="cantidad_detalle" name="cantidad_detalle" maxlength="3" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('nombre_recurso_ed');" onkeypress="return sololetras(event)" required><br>
+                                            <input type="number" class="form-control" id="cantidad_detalle" name="cantidad_detalle" maxlength="3" value=""onkeypress="return solonumeros(event)" oncopy="return false" onpaste="return false" required><br>
                                             <label for="">Precio</label><br>
-                                            <input type="number" class="form-control" id="precio_detalle" name="precio_detalle" maxlength="4" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('nombre_recurso_ed');" onkeypress="return sololetras(event)" required><br>
+                                            <input type="number" class="form-control" id="precio_detalle" name="precio_detalle" maxlength="4" value=""onkeypress="return solonumeros(event)" oncopy="return false" onpaste="return false" required><br>
                                         </div>
                                         <br>
                                         <div class="col-12">
                                             <label for="">Descripción</label><br>
-                                            <textarea cols="20" rows="5" class="form-control" id="desc_detalle" name="desc_detalle" maxlength="100" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('descripcion_ed');" onkeypress="return sololetras(event)" required></textarea>
+                                            <textarea cols="20" rows="5" class="form-control" id="desc_detalle" name="desc_detalle" maxlength="255" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('desc_detalle');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Descripción" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@ ob_end_flush();
             <div class="card-body  ">
                 <div class="row">
                     <div class="col-9">
-                        <h3 class="card-title">DETALLES DE REGISTRO DE RECURSOS</h3>
+                        <h3 class="card-title">Detalles de Registro de Recursos</h3>
                     </div>
                     <div class="col-3">
                         <a href="../vistas/agregar_detalles_recursos.php" class="btn btn-success btn-m">Agregar Detalle recursos</a>
@@ -170,7 +170,7 @@ ob_end_flush();
             <div class="container-fluid">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">RECURSOS DETALLES</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Recursos Detalles</a>
                     </li>
                     <!-- <li class="nav-item">
             <a class="nav-link" id="movimientos-tab" data-toggle="tab" href="#movimientos" role="tab" aria-controls="movimientos" aria-selected="false">CRAED</a>
@@ -189,7 +189,7 @@ ob_end_flush();
                                                         <th scope="col">ID</th>
                                                         <th scope="col">NOMBRE</th>
                                                         <th scope="col">CANTIDAD</th>
-                                                        <th scope="col">DESCRIPCION</th>
+                                                        <th scope="col">DESCRIPCIÓN</th>
                                                         <th scope="col">PRECIO</th>
                                                         <th scope="col">TOTAL</th>
                                                         <th scope="col">NOMBRE RECURSO</th>
@@ -417,8 +417,9 @@ ob_end_flush();
 
             $('#tabla_detalles_recursos tbody').on('click', '#eliminar_detalle_recurso', function() {
                 var fila = table.row($(this).parents('tr')).data();
-                var id_recurso = fila.id_detalle_tipo_recurso;
-                console.log(id_recurso);
+                var id_recurso = fila.id_detalle_tipo_recurso;                
+                //console.log(id_recurso);
+                //const formulario_eliminar = new FormData();
 
                 const formulario_recurso = new FormData();
                 formulario_recurso.append('eliminar_detalle_recurso', 1);
@@ -470,6 +471,7 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>
 
 
 <script>

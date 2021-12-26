@@ -7,7 +7,7 @@ require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 require_once('../clases/funcion_permisos.php');
 
-if (permiso_ver('121') == '1') {
+if (permiso_ver('9252') == '1') {
 
   $_SESSION['g_planificacionjefatura_vista'] = "...";
 } else {
@@ -15,7 +15,7 @@ if (permiso_ver('121') == '1') {
   tiene permisos para visualizar";
 }
 
-if (permiso_ver('107') == '1') {
+if (permiso_ver('9238') == '1') {
 
   $_SESSION['poa_vista'] = "...";
 } else {
@@ -23,7 +23,7 @@ if (permiso_ver('107') == '1') {
   tiene permisos para visualizar";
 }
 
-if (permiso_ver('117') == '1') {
+if (permiso_ver('9248') == '1') {
 
   $_SESSION['g_detalle_recursos'] = "...";
 } else {
@@ -31,7 +31,7 @@ if (permiso_ver('117') == '1') {
   tiene permisos para visualizar";
 }
 
-if (permiso_ver('126') == '1') {
+if (permiso_ver('9257') == '1') {
 
   $_SESSION['g_detalle_gastos'] = "...";
 } else {
@@ -39,14 +39,14 @@ if (permiso_ver('126') == '1') {
   tiene permisos para visualizar";
 }
 
-if (permiso_ver('125') == '1') {
+if (permiso_ver('9256') == '1') {
 
   $_SESSION['g_detalle_indicadores'] = "...";
 } else {
   $_SESSION['g_detalle_indicadores'] = "No 
   tiene permisos para visualizar";
 }
-$Id_objeto = 105;
+$Id_objeto = 9252;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -96,7 +96,7 @@ ob_end_flush()
           <div class="row mb-2">
 
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">PLANIFICACION ACADEMICA DE JEFATURA</h1>
+              <h1 class="m-0 text-dark">Planificación Académica de Jefatura</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -124,7 +124,7 @@ ob_end_flush()
             <div class="col-4 col-sm-4 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h5>PLAN OPERATIVO ANUAL(POA)</h5>
+                  <h5>Plan Operativo Anual(POA)</h5>
                   <p><?php echo $_SESSION['poa_vista']; ?></p>
                 </div>
                 <div class="icon">
@@ -140,7 +140,7 @@ ob_end_flush()
             <div class="col-4 col-sm-4 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h5>GESTIÓN DE RECURSOS</h5>
+                  <h5>Gestión de Recursos</h5>
                   <p><?php echo $_SESSION['g_detalle_recursos']; ?></p>
                 </div>
                 <div class="icon">
@@ -158,7 +158,7 @@ ob_end_flush()
             <div class="col-4 col-sm-4 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h5>GESTIÓN DE GASTOS OPERATIVOS</h5>
+                  <h5>Gestión de Gastos Operativos</h5>
                   <p><?php echo $_SESSION['g_detalle_gastos']; ?></p>
                 </div>
                 <div class="icon">
@@ -172,7 +172,7 @@ ob_end_flush()
             <div class="col-4 col-sm-4 col-md-4">
               <div class="small-box bg-light">
                 <div class="inner">
-                  <h5>GESTIÓN DE INDICADORES ACADEMICOS</h5>
+                  <h5>Gestión de Indicadores Académico</h5>
                   <p><?php echo $_SESSION['g_detalle_indicadores']; ?></p>
                 </div>
                 <div class="icon">

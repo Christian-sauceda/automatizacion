@@ -1,7 +1,9 @@
-$(document).ready(function() {
-    $("#chats").load('../Controlador/movil_cargar_chats_controlador.php');
-});
 
+setInterval(mostrarBandeja(), 2000);
+
+function mostrarBandeja(){
+    $("#chats").load('../Controlador/movil_cargar_chats_controlador.php')
+ }
 function getChats(id_chat,id_usuario) {
     $("#resultado_chat").load('../Controlador/movil_mostrar_chat_controlador.php',{
         "id_chat": id_chat, "id_usuario":id_usuario, 'funcion':'mostrar'//,
@@ -59,17 +61,17 @@ function enviar(id_chat,id_usuario){
         success: function() { //una vez que el archivo recibe el request lo procesa y lo devuelve
             getChats(id_chat,id_usuario);
         }
-    });
+         });
     
-}else{
-    swal({
-        title: "",
-        text: "No se pueden enviar mensajes vacios!!",
-        type: "error",
-        showConfirmButton: false,
-        timer: 3000
-      });
-}
+            }else{
+                swal({
+                    title: "",
+                    text: "No se pueden enviar mensajes vacios!!",
+                    type: "error",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            }
 }
 function filtrarUsuarios(buscar) {
     var parametros = {

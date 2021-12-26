@@ -5,7 +5,7 @@ session_start();
 require_once('../clases/Conexion.php');
 require_once('../clases/funcion_bitacora.php');
 
-$Id_objeto = 12200;
+$Id_objeto = 200;
 $tipo_caracteristica = mb_strtoupper($_POST['txt_tipocaracteristica']);
 $id_tipo_caracteristica = $_GET['id_tipo_caracteristica'];
 $tipo_dato = $_POST['cb_tipo_dato'];
@@ -52,7 +52,7 @@ if( preg_match($patron_texto, $_POST['txt_tipocaracteristica']) )
                     timer: 6000
                   });
                   $(".FormularioAjax")[0].reset();
-                  window.location = "../vistas/mantenimiento_tipo_caracteristica_vista";
+                  window.location = "../vistas/mantenimiento_tipo_caracteristica_vista.php";
               </script>';
             
 
@@ -82,10 +82,10 @@ if( preg_match($patron_texto, $_POST['txt_tipocaracteristica']) )
                                         timer: 6000
                                       });
                                       $(".FormularioAjax")[0].reset();
-                                      window.location = "../vistas/mantenimiento_tipo_caracteristica_vista";
+                                      window.location = "../vistas/mantenimiento_tipo_caracteristica_vista.php";
                                   </script>';
                                 } else {
-                                    header("location:../vistas/mantenimiento_tipo_caracteristica_vista?msj=8");
+                                    header("location:../vistas/mantenimiento_tipo_caracteristica_vista.php?msj=8");
                                 }
                             }elseif($valor_viejo['tipo_caracteristica'] <> $tipo_caracteristica )
                             {
@@ -105,10 +105,10 @@ if( preg_match($patron_texto, $_POST['txt_tipocaracteristica']) )
                                         timer: 6000
                                       });
                                       $(".FormularioAjax")[0].reset();
-                                      window.location = "../vistas/mantenimiento_tipo_caracteristica_vista";
+                                      window.location = "../vistas/mantenimiento_tipo_caracteristica_vista.php";
                                   </script>';
                                 } else {
-                                    header("location:../vistas/mantenimiento_tipo_caracteristica_vista?msj=8");
+                                    header("location:../vistas/mantenimiento_tipo_caracteristica_vista.php?msj=8");
                                 }
                             }
                             
@@ -131,15 +131,15 @@ if( preg_match($patron_texto, $_POST['txt_tipocaracteristica']) )
                                         timer: 6000
                                       });
                                       $(".FormularioAjax")[0].reset();
-                                      window.location = "../vistas/mantenimiento_tipo_caracteristica_vista";
+                                      window.location = "../vistas/mantenimiento_tipo_caracteristica_vista.php";
                                   </script>';
                                 } else {
-                                    header("location:../vistas/mantenimiento_tipo_caracteristica_vista?msj=8");
+                                    header("location:../vistas/mantenimiento_tipo_caracteristica_vista.php?msj=8");
                                 }
 
                             } else
                             {
-                                header("location:../vistas/mantenimiento_tipo_caracteristica_vista?msj=4");
+                                header("location:../vistas/mantenimiento_tipo_caracteristica_vista.php?msj=4");
  
                             }
 
@@ -159,12 +159,12 @@ if( preg_match($patron_texto, $_POST['txt_tipocaracteristica']) )
                 timer: 6000
               });
               $(".FormularioAjax")[0].reset();
-              window.location = "../vistas/mantenimiento_tipo_caracteristica_vista";
+              window.location = "../vistas/mantenimiento_tipo_caracteristica_vista.php";
           </script>';
         }
         else
             {
-                header("location:../vistas/mantenimiento_tipo_caracteristica_vista?msj=5");
+                header("location:../vistas/mantenimiento_tipo_caracteristica_vista.php?msj=5");
 
             }
 
@@ -183,7 +183,7 @@ else{
         timer: 6000
       });
       $(".FormularioAjax")[0].reset();
-      window.location = "../vistas/mantenimiento_tipo_caracteristica_vista";
+      window.location = "../vistas/mantenimiento_tipo_caracteristica_vista.php";
   </script>';
 
     }  

@@ -11,7 +11,7 @@ require_once('../clases/funcion_visualizar.php');
 require_once('../clases/funcion_permisos.php');
 date_default_timezone_set("America/Tegucigalpa");
 
-$Id_objeto = 164;
+$Id_objeto = 10164;
 
 bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO', 'A CREAR PARÁMETROS');
 
@@ -64,20 +64,18 @@ if (isset($_REQUEST['msj'])) {
                 </script>';
   }
 }
-// if ($visualizacion == 0) {
-//   echo '<script type="text/javascript">
-//                               swal({
-//                                    title:"",
-//                                    text:"Lo sentimos no tiene permiso de visualizar la pantalla",
-//                                    type: "error",
-//                                    showConfirmButton: false,
-//                                    timer: 3000
-//                                 });
-//                            window.location = "../vistas/menu_usuarios_vista.php";
-
-//                             </script>';
-//   // header('location:  ../vistas/menu_usuarios_vista.php');
-// } else {
+if ($visualizacion == 0) {
+  echo '<script type="text/javascript">
+                              swal({
+                                   title:"",
+                                   text:"Lo sentimos no tiene permiso de visualizar la pantalla",
+                                   type: "error",
+                                   showConfirmButton: false,
+                                   timer: 3000
+                                });
+                            </script>';
+   header('location:  ../vistas/pagina_inicio_vista.php');
+} //else {
 
 
 

@@ -10,7 +10,7 @@ require_once('../clases/permisos_usuario.php');
 require_once('../clases/funcion_permisos.php');
 require_once('../clases/funcion_bitacora_movil.php');
 
-$Id_objeto = 179;
+$Id_objeto = 10179;
 $visualizacion = permiso_ver($Id_objeto);
 if ($visualizacion == 0) {
   echo '<script type="text/javascript">

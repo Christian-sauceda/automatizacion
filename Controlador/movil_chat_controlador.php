@@ -9,9 +9,10 @@ if ($funcion == 'buscarUsuarios') {
 }
 
 function getUser()
-{
+{ //obtinen los usuarios
     require '../clases/Conexion.php';
         ?>
+       
 <div class="col-span-1">
     <div class="my-3 mx-3 border-b border-gray-300">
         <div class="relative text-gray-600 focus-within:text-gray-400">
@@ -21,9 +22,8 @@ function getUser()
                     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
             </span>
-            <input aria-placeholder="Busca tus amigos o contacta nuevos" placeholder="Buscar Usuario"
-                class="py-2 pl-10 block w-full rounded bg-gray-100 outline-none focus:text-gray-700" type="search"
-                name="search" id="search" required autocomplete="search" onclick="filtrarUsuarios(this.value);"
+            <input placeholder="Buscar Usuario" class="py-2 pl-10 block w-full rounded bg-gray-100 outline-none focus:text-gray-700" type="search"
+                name="search" id="search" required onclick="filtrarUsuarios(this.value);"
                 onkeyup="filtrarUsuarios(this.value);" />
         </div>
     </div>
@@ -75,6 +75,7 @@ if ($funcion == 'filtrarUsuarios') {
 
 function filtroUser()
 {
+    //filtrar usuarios
     require '../clases/Conexion.php';
         
   

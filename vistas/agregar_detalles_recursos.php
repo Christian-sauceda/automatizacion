@@ -11,7 +11,6 @@ require_once('../vistas/pagina_inicio_vista.php');
 <html lang="en">
 
 <head>
-    <script src="../js/autologout.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -24,7 +23,7 @@ require_once('../vistas/pagina_inicio_vista.php');
         <div class="card">
             <div class="card-body">
                 <div class="col-sm-6">
-                    <h3>AGREGAR NUEVOS DETALLES DE RECURSOS OPERATIVOS</h3>
+                    <h3>Agregar Detalle Recursos Operativos</h3>
                 </div>
                 <hr>
                 <div class="col-sm-6">
@@ -39,17 +38,17 @@ require_once('../vistas/pagina_inicio_vista.php');
                         <!-- /.card-header -->
                         <div class="card-body">
                             <form id="form_detalles_r">
-                                <label for="">SELECCIONE EL TIPO DE RECURSO</label>
+                                <label for="">Seleccione el Tipo de Recurso</label>
                                 <select name="" id="tipos_recursos" class="form-control">
                                 </select>
                                 <label for="">Nombre</label>
-                                <input type="text" class="form-control" id="nombre_detalle_r" name="nombre_detalle_r" required>
+                                <input type="text" class="form-control" id="nombre_detalle_r" name="nombre_detalle_r" maxlength="20" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('nombre_detalle_r');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="nombre del recurso" required>
                                 <label for="">Cantidad</label>
-                                <input type="number" class="form-control" id="cantidad_detalle" name="cantidad_detalle" required>
+                                <input type="number" class="form-control" id="cantidad_detalle" name="cantidad_detalle" placeholder="CANTIDAD" required>
                                 <label for="">Precio</label>
-                                <input type="number" step=".01" class="form-control" id="precio_detalle" name="precio_detalle" required>
-                                <label for="">Descripcion</label>
-                                <input type="text" class="form-control" id="descp_detalle" name="descp_detalle" required>
+                                <input type="number" step="1" class="form-control" id="precio_detalle" name="precio_detalle" placeholder="PRECIO" required>
+                                <label for="">Descripción</label>
+                                <input type="text" class="form-control" id="descp_detalle" name="descp_detalle" maxlength="255" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('descp_detalle');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="descripción" required>
                                 <br>
                                 <button class="btn btn-primary" id="guardar_detalles_recursos">Guardar</button>
                             </form>
@@ -64,6 +63,7 @@ require_once('../vistas/pagina_inicio_vista.php');
 </body>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>
 
 <script>
     function cargar_detalle_recurso() {

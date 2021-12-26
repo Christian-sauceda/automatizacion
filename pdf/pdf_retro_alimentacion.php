@@ -54,7 +54,11 @@ if (isset($_GET['enviar'])) {
             <p align="center" class="f0">
                 <strong>Reporte de retroalimentación por reasignación académica</strong>
             </p>
-            <br>
+            <!--br-->
+            <p style="margin-left: 30px;">
+                <img width="246" height="123" src="../dist/img/unah_log.jpg" />
+            
+            </p><br>
 
             <p></p>
 

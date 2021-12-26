@@ -8,14 +8,13 @@ require_once('../clases/funcion_bitacora_movil.php');
 require_once('../Controlador/movil_api_controlador.php');
 require_once('../Controlador/movil_transacciones_controlador.php');
 if (isset($_GET['op'])) {
-$url ='http://desarrollo.informaticaunah.com/ApiRestAppInformatica/modulos/notificaciones/envioNotificaciones.php';
+$url_envio_notificacion = parametrizacion('Url_Notificacion');
+$url =base_url.$url_envio_notificacion;
 $datos = array();
 //id_objeto vista notificaciones
 $Id_objeto = 169;
 switch ($_GET['op']) {
-    
     case 'insert':
-       
         $titulo = isset($_POST['titulo']) ? ucfirst($_POST['titulo']) : '';
         $contenido = isset($_POST['Contenido']) ? ucfirst($_POST['Contenido']) : '';
         $segmento = isset($_POST['Segmentos']) ? $_POST['Segmentos'] : '';
@@ -28,12 +27,10 @@ switch ($_GET['op']) {
         $tipo_notificacion = (int)$id_tipo_notificacion['id'];
         //subir imagen de la notificacion 
         $image = subirImagen();
-        
         $sql = "INSERT into tbl_movil_notificaciones  VALUES (null,'$titulo','$contenido','$fecha_publicacion','ADMIN',$segmento,$tipo_notificacion,'$image',1)";
         $resultado = $mysqli->query($sql);
         bitacora_movil::evento_bitacora($_SESSION['id_usuario'],$Id_objeto,'INSERTO',strtoupper("$sql"));
             if($resultado === TRUE){
-                
                  //Llenado del arreglo
                 $id_usuario = $_SESSION['id_usuario'];
                 $sql = "SELECT Usuario,contrasena FROM tbl_usuarios WHERE Id_usuario = $id_usuario";
@@ -55,13 +52,12 @@ switch ($_GET['op']) {
                                  "segmento" => $segmento);
                 $response = consumoApi($url, $datos);
                 $response2 = $response['mensaje'];
-                if($response2 != 'Las notificaciones se enviaron con exito'){
+                if($response2 != 'Se enviaron las notificaciones correctamente'){
                     $resultado_transaccion = 'No Completada';
                 }else{
                     $resultado_transaccion = 'Completada';
                 }
-                transaccion('envio de notificaciones',"$response2","$resultado_transaccion",$mysqli);
-                
+                transaccion('envio de notificaciones',"$response2","$resultado_transaccion",$mysqli);  
                 header('location: ../vistas/movil_gestion_notificaciones_vista.php?msj=2');
             }
         break;
@@ -113,7 +109,7 @@ switch ($_GET['op']) {
                                  "segmento" => $segmento);
                 $response = consumoApi($url, $datos);
                 $response2 = $response['mensaje'];
-                if($response2 != 'Las notificaciones se enviaron con exito'){
+                if($response2 != 'Se enviaron las notificaciones correctamente'){
                     $resultado_transaccion = 'No Completada';
                 }else{
                     $resultado_transaccion = 'Completada';
@@ -162,9 +158,8 @@ function subirImagen(){
     $name = $_FILES['subir_archivo']['name'];
     if(is_array($_FILES) && count($_FILES) > 0){
         if(move_uploaded_file($tmp_name,"../archivos/movil/notificacion/".$name)){
-            $ext_url = 'http://desarrollo.informaticaunah.com';
           $nombrearchivo= '/archivos/movil/notificacion/'.$name;
-          return $ext_url.$nombrearchivo;
+          return base_url.$nombrearchivo;
         }else{
             echo 0;
         }

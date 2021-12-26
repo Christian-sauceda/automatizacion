@@ -10,7 +10,7 @@ require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 require_once('../clases/funcion_permisos.php');
 
-$Id_objeto = 127;
+$Id_objeto = 9260;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -31,9 +31,6 @@ if ($visualizacion == 0) {
 } else {
 
     bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', 'A LOS TIPOS DE GASTOS.');
-
-
- 
 }
 
 ob_end_flush();
@@ -60,7 +57,7 @@ ob_end_flush();
                     <div class="col-sm-6">
 
 
-                        <h1>CREAR UN NUEVO TIPO DE GASTO</h1>
+                        <h1>Crear Nuevo Tipo de Gasto</h1>
                     </div>
 
                     <div class="col-sm-6">
@@ -84,7 +81,7 @@ ob_end_flush();
 
                 <div class="card card-default ">
                     <div class="card-header center">
-                        <h3 class="card-title">NUEVO TIPO DE GASTO</h3>
+                        <h3 class="card-title">Nuevo Tipo de Gasto</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -108,9 +105,9 @@ ob_end_flush();
                                         <div class="row">
                                             <div class="col-12">
                                                 <label for="">Fecha</label><br>
-                                                <input type="text" class="form-control" id="datepicker" name="fecha_gasto" placeholder="dia/mes/año" required> <br>
+                                                <input type="text" class="form-control" id="datepicker" name="fecha_gasto" placeholder="dd/mm/yyyy" required> <br>
                                                 <label for="">Nombre Gasto</label><br>
-                                                <input type="text" class="form-control" id="nombre_gasto" name="nombre_gasto"  maxlength="20" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('nombre_gasto');" onkeypress="return sololetras(event)" required>
+                                                <input type="text" class="form-control" id="nombre_gasto" name="nombre_gasto" maxlength="20" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('nombre_gasto');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Descripción" required>
                                                 <!-- <label for="">Gastos Tipos</label>
                                                 <select name="" id="" class="form-control">
                                                     <option value="1">Vaitico</option>
@@ -122,7 +119,7 @@ ob_end_flush();
                                             <br>
                                             <div class="col-12">
                                                 <label for="">Descripción</label><br>
-                                                <textarea cols="20" rows="5" class="form-control" id="descripcion" name="descripcion" maxlength="50" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('descripcion');" onkeypress="return sololetras(event)" required></textarea>
+                                                <textarea cols="20" rows="5" class="form-control" id="descripcion" name="descripcion" maxlength="50" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('descripcion');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Descripción" required></textarea>
                                             </div>
 
                                             <div class="col-12">
@@ -146,9 +143,15 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>
+
 <script src="../js/newGasto.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" />
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" /> -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
     $("#datepicker").datepicker({
         // format: " yyyy", // Notice the Extra space at the beginning
@@ -173,19 +176,20 @@ ob_end_flush();
             }
         }
     }
-    function validate(s){
-        if (/^(\w+\s?)*\s*$/.test(s)){
-          return s.replace(/\s+$/,  '');
+
+    function validate(s) {
+        if (/^(\w+\s?)*\s*$/.test(s)) {
+            return s.replace(/\s+$/, '');
         }
         return 'NOT ALLOWED';
-        }
-        
-        validate('tes ting')      //'test ing'
-        validate('testing')       //'testing'
-        validate(' testing')      //'NOT ALLOWED'
-        validate('testing ')      //'testing'
-        validate('testing  ')     //'testing'
-        validate('testing   ')   
+    }
+
+    validate('tes ting') //'test ing'
+    validate('testing') //'testing'
+    validate(' testing') //'NOT ALLOWED'
+    validate('testing ') //'testing'
+    validate('testing  ') //'testing'
+    validate('testing   ')
 
     function sololetras(e) {
 

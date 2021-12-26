@@ -161,7 +161,7 @@ function actualizr_responsables() {
                     var tr_body = "<tr>" +
                         "<td class='des'>" + descripcion + "</td>" +
                         "<td align='center' class='cant'>" + cantidad + "</td>" +
-                        "<td align='center'><button type='button' id='edit_responsable' class='btn btn-success'><i class='fas fa-edit' ></i></button></td>" +
+                        "<td align='center'><button class='btn btn-warning' id='editar_responsable'>Editar</button>" +
                         "<td align='center'><button type='button' id='delete_responsable' class='btn btn-danger'><i class='fas fa-times' ></i></button></td>"
                     "</tr>";
                     $("#tabla_responsables tbody").append(tr_body);
@@ -179,6 +179,7 @@ function showMEssage(type, message) {
   </button>
         </div>`
 }
+//!fin responsables
 
 //!boton actividades 
 const guardar_actividad = document.getElementById('guardar_actividad');
@@ -244,6 +245,7 @@ function update_actividades() {
                     var actividad = r[i].actividad;
                     var id_verificacion = r[i].id_verificacion;
                     var medio_veri = r[i].medio_veri;
+                    var id_pobla_objetivo = r[i].id_poblacion_objetivo;
                     var pobla_objetivo = r[i].pobla_objetivo;
 
                     var tr_body = "<tr>" +
@@ -251,6 +253,7 @@ function update_actividades() {
                         "<td align='center' class=''>" + actividad + "</td>" +
                         "<td align='center' class=''>" + id_verificacion + "</td>" +
                         "<td align='center' class=''>" + medio_veri + "</td>" +
+                        "<td align='center' class=''>" + id_pobla_objetivo + "</td>" +
                         "<td align='center' class=''>" + pobla_objetivo + "</td>" +
                         "<td align='center'><button type='button' class='btn btn-success btn-sm' id='editar_act' ><i class='fas fa-edit' ></i></button></td>" +
                         "<td align='center'><button type='button' class='btn btn-danger btn-sm' id='eliminar_act' ><i class='fas fa-times' ></i></button></td>"
@@ -265,7 +268,7 @@ function update_actividades() {
 
 //*guardar metas
 const save_metas = document.getElementById('guardar_metas');
-const form_metas_send = document.getElementById('agregar_metas');
+const form_metas_send = document.getElementById('agregar_metas');//form
 
 
 save_metas.addEventListener('click', function (e) {
@@ -343,7 +346,7 @@ function update_metas() {
                         "<td align='center' class=''>" + trimestre_3 + "</td>" +
                         "<td align='center' class=''>" + trimestre_4 + "</td>" +
                         "<td align='center'><button type='button' class='btn btn-success btn-sm' id='editar_metas' ><i class='fas fa-edit' ></i></button></td>" +
-                                "<td align='center'><button type='button' class='btn btn-danger btn-sm' id='eliminar_meta' ><i class='fas fa-times' ></i></button></td>"
+                        "<td align='center'><button type='button' class='btn btn-danger btn-sm' id='eliminar_meta' ><i class='fas fa-times' ></i></button></td>"
                     "</tr>";
                     $("#tabla_metas tbody").append(tr_body);
                 }

@@ -11,17 +11,14 @@ require_once('../clases/funcion_bitacora_movil.php');
 
 require_once('../vistas/pagina_inicio_vista.php');
 
-$Id_objeto = 161;
+require_once('../clases/funcion_visualizar.php');
+
+$Id_objeto = 10161;
 
 bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO', 'A LA VISTA DEL CHAT ');
-if (permiso_ver('161') == '1') {
-
-    $_SESSION['movil_chat_vista'] = "...";
-} else {
-    $_SESSION['movil_chat_vista'] = "No 
-    tiene permisos para visualizar";
+if (permiso_ver('161') == '0') {
+    header("location: ../vistas/pagina_inicio_vista");
 }
-
 ?>
 
 <head>

@@ -10,7 +10,7 @@ require_once('../clases/permisos_usuario.php');
 require_once('../clases/funcion_permisos.php');
 require_once('../clases/funcion_bitacora_movil.php');
 
-$Id_objeto = 178;
+$Id_objeto = 10178;
 $visualizacion = permiso_ver($Id_objeto);
 if ($visualizacion == 0) {
   echo '<script type="text/javascript">
@@ -121,7 +121,7 @@ if (permiso_ver('171') == '1') {
                   <div class="row" style="  display: flex;
     align-items: center;
     justify-content: center;">
-                    <div class="col-6 col-sm-6 col-md-4">
+                    <!-- <div class="col-6 col-sm-6 col-md-4">
                       <div class="small-box bg-light">
                         <div class="inner">
                           <h4>Crear Nuevo Parámetro </h4>
@@ -135,25 +135,10 @@ if (permiso_ver('171') == '1') {
                           Ir <i class="fas fa-arrow-circle-right"></i>
                         </a>
                       </div>
-                    </div>
+                    </div> -->
                     <!-- fix for small devices only -->
                     <div class="clearfix hidden-md-up"></div>
-                    <div class="col-6 col-sm-6 col-md-4">
-                      <div class="small-box bg-primary">
-                        <div class="inner">
-                          <h4>Gestión de Parámetros</h4>
-                          <p><?php echo $_SESSION['movil_gestion_parametros_vista']; ?></p>
-                        </div>
-                        <div class="icon">
-                          <i class="fas fa-edit"></i>
-                        </div>
-                        <a href="../vistas/movil_gestion_parametros_vista.php" class="small-box-footer">
-                          Ir <i class="fas fa-arrow-circle-right"></i>
-                        </a>
-                      </div>
-                      <!-- /.info-box -->
-                    </div>
-                    <!-- /.row -->
+                  
                   </div>
                   <!--/. container-fluid -->
                 </div>
@@ -221,6 +206,23 @@ if (permiso_ver('171') == '1') {
                           <i class="fas fa-edit"></i>
                         </div>
                         <a href="../vistas/movil_gestion_transacciones_vista.php" class="small-box-footer">
+                          Ir <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                      </div>
+                      <!-- /.info-box -->
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="col-6 col-sm-6 col-md-4">
+                      <div class="small-box bg-primary">
+                        <div class="inner">
+                          <h4>Gestión de Parámetros</h4>
+                          <p><?php echo $_SESSION['movil_gestion_parametros_vista']; ?></p>
+                        </div>
+                        <div class="icon">
+                          <i class="fas fa-edit"></i>
+                        </div>
+                        <a href="../vistas/movil_gestion_parametros_vista.php" class="small-box-footer">
                           Ir <i class="fas fa-arrow-circle-right"></i>
                         </a>
                       </div>

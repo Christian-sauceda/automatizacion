@@ -176,196 +176,207 @@ $fechaActual = date('d-m-Y h:i:s');
 
                                                                 </div>
 
+                                                                <div class="container">
+
+                                                                    <div class="row">
 
 
 
+                                                                        <div class="col-sm-4" id="parrafo_numEmpleado">
+                                                                            <label for="">Nº Empleado:</label>
 
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i class="fas fa-user icon"></i></span>
+                                                                                    <input disabled name="" type="text" class="form-control" id="empleado">
 
-                                                                <div class="col-sm-2" id="parrafo_numEmpleado">
-                                                                    <label for="">Nº Empleado:</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text"><i class="fas fa-user icon"></i></span>
-                                                                            <input disabled name="" type="text" class="form-control" id="empleado">
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-sm-5">
-                                                                    <label for="">Nombre:</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_nombre"><i class="fas fa-file-signature"></i></span>
-                                                                            <input disabled name="" type="text" onkeyup="Mayuscula('Nombre'); MismaLetra('Nombre'); DobleEspacio(this, event);" onkeypress="return sololetras(event)" class="form-control" id="Nombre" required>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-sm-5">
-                                                                    <label for="">Apellido(s):</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_apellido"><i class="fas fa-file-signature"></i></span>
-                                                                            <input disabled name="" type="text" onkeyup="Mayuscula('txt_apellido');MismaLetra('txt_apellido'); DobleEspacio(this, event);" onkeypress="return sololetras(event);" class="form-control" id="txt_apellido" required>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-
-
-
-
-
-                                                                <div class="col-sm-3" id="parrafo_genero">
-                                                                    <label for="email">Género:</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_genero"><i class="fas fa-toggle-on"></i></span>
-
-                                                                            <input value="" type="text" disabled name="ver_genero" id="ver_genero" class="form-control">
-
-                                                                            <select hidden class="form-control" onchange="mostrar_genero($('#genero').val());" id="genero" name="">
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <input class="form-control" readonly hidden id="age" name="age" maxlength="25" value="" required style="text-transform: uppercase">
-
-                                                                <div class="col-sm-3" id="parrafo_nacimiento">
-                                                                    <label for="">Fecha Nacimiento:</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_nacimiento"><i class="far fa-calendar-alt"></i></span>
-                                                                            <input disabled="true" value="" type="date" name="fecha" id="fecha" class="form-control" onblur="valida_mayoria()">
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
 
-                                                                    </div>
-                                                                    <p hidden id="Textofecha" style="color:red;">¡El docente debe ser mayor de edad! </p>
+                                                                        <div class="col-sm-4">
+                                                                            <label for="">Nombre:</label>
 
-                                                                </div>
-                                                                <input type="text" name="mayoria_edad" id="mayoria_edad" hidden readonly onload="mayoria_edad()">
-                                                                <div class="col-sm-3" id="parrafo_identidad">
-                                                                    <label for="">Nº Identidad:</label>
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_nombre"><i class="fas fa-file-signature"></i></span>
+                                                                                    <input disabled name="" type="text" onkeyup="Mayuscula('Nombre'); MismaLetra('Nombre'); DobleEspacio(this, event);" onkeypress="return sololetras(event)" class="form-control" id="Nombre" required>
 
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_identidad"><i class="fas fa-id-card"></i></span>
-                                                                            <input disabled name="" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" required onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <p hidden id="TextoIdentidad" style="color:red;">La Identidad Ya existe</p>
-                                                                    <p hidden id="Textomayor" style="color:red;">¡Es menor de edad! </p>
-
-                                                                </div>
-
-                                                                <div class="col-sm-3" id="parrafo_estadoC">
-                                                                    <label for="">Estado Civil:</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_estado"><i class="fas fa-user icon"></i></span>
-
-                                                                            <input value="" type="text" disabled name="ver_estado" id="ver_estado" class="form-control">
-
-                                                                            <select hidden class="form-control" onchange="mostrar_estado_civil($('#estado_civil').val());" id="estado_civil" name="">
-                                                                            </select>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-sm-3" id="parrafo_nacionalidad">
-                                                                    <label for="">Nacionalidad:</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_nacionalidad"><i class="fas fa-flag"></i></span>
-                                                                            <input disabled name="" type="text" onkeyup="Mayuscula('nacionalidad');" class="form-control" id="nacionalidad">
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-
-
-
-                                                                <div class="col-sm-2" id="parrafo_sued">
-                                                                    <label for="">Sued:</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_estado"><i class="fas fa-user icon"></i></span>
-
-                                                                            <input class="form-control" readonly value="" type="text" name="sued" id="sued">
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-sm-4" id="parrafo_categoria">
-                                                                    <label for="">Categoría:</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_categoria"><i class="fas fa-user icon"></i></span>
-                                                                            <input disabled name="" type="text" class="form-control" id="categoria">
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-sm-3" id="parrafor_jornada">
-                                                                    <label for="">Jornada:</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_jornada"><i class="fas fa-user icon"></i></span>
-                                                                            <input disabled name="" type="text" class="form-control" id="jornada">
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-2" id="parrafor_hi">
-                                                                    <label for="">H. entrada:</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_jornada"><i class="fas fa-user-clock"></i></span>
-                                                                            <input disabled name="" type="text" class="form-control" id="hi">
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-2" id="parrafor_hf">
-                                                                    <label for="">H. salida:</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_jornada"><i class="fas fa-user-clock"></i></span>
-                                                                            <input disabled name="" type="text" class="form-control" id="hf">
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-3" id="parrafo_fechaentradatrabajo">
-                                                                    <label for="">Fecha Ingreso :</label>
-
-                                                                    <div class="form-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="icono_nacimiento"><i class="far fa-calendar-alt"></i></span>
-                                                                            <input disabled="true" value="" type="date" name="fechaentrada" id="fechaentrada" class="form-control">
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
 
+                                                                        <div class="col-sm-4">
+                                                                            <label for="">Apellido(s):</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_apellido"><i class="fas fa-file-signature"></i></span>
+                                                                                    <input disabled name="" type="text" onkeyup="Mayuscula('txt_apellido');MismaLetra('txt_apellido'); DobleEspacio(this, event);" onkeypress="return sololetras(event);" class="form-control" id="txt_apellido" required>
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+
+
+
+
+
+                                                                        <div class="col-sm-4" id="parrafo_genero">
+                                                                            <label for="email">Género:</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_genero"><i class="fas fa-toggle-on"></i></span>
+
+                                                                                    <input value="" type="text" disabled name="ver_genero" id="ver_genero" class="form-control">
+
+                                                                                    <select hidden class="form-control" onchange="mostrar_genero($('#genero').val());" id="genero" name="">
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <input class="form-control" readonly hidden id="age" name="age" maxlength="25" value="" required style="text-transform: uppercase">
+
+                                                                        
+                                                                        <input type="text" name="mayoria_edad" id="mayoria_edad" hidden readonly onload="mayoria_edad()">
+
+                                                                        <div class="col-sm-4" id="parrafo_nacimiento">
+                                                                        <label for="">Fecha Nacimiento:</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                <span class="input-group-text" id="icono_nacimiento"><i class="far fa-calendar-alt"></i></span>
+                                                                                    <input disabled="true" value="" type="date" name="fecha" id="fecha" class="form-control" onblur="valida_mayoria()">
+                                                                                
+                                                                                </div>
+                                                                                <p hidden id="Textofecha" style="color:red;">¡El docente debe ser mayor de edad! </p>
+                                                                            </div>
+                                                                            
+
+                                                                        </div>
+
+
+
+
+
+                                                                        <div class="col-sm-4" id="parrafo_identidad">
+                                                                            <label for="">Nº Identidad:</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_identidad"><i class="fas fa-id-card"></i></span>
+                                                                                    <input disabled name="" type="text" data-inputmask="'mask': '9999-9999-99999'" data-mask class="form-control" id="identidad" required onkeyup="ValidarIdentidad($('#identidad').val());" onblur="ExisteIdentidad();">
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <p hidden id="TextoIdentidad" style="color:red;">La Identidad Ya existe</p>
+                                                                            <p hidden id="Textomayor" style="color:red;">¡Es menor de edad! </p>
+
+                                                                        </div>
+
+                                                                        <div class="col-sm-3" id="parrafo_estadoC">
+                                                                            <label for="">Estado Civil:</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_estado"><i class="fas fa-user icon"></i></span>
+
+                                                                                    <input value="" type="text" disabled name="ver_estado" id="ver_estado" class="form-control">
+
+                                                                                    <select hidden class="form-control" onchange="mostrar_estado_civil($('#estado_civil').val());" id="estado_civil" name="">
+                                                                                    </select>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-3" id="parrafo_nacionalidad">
+                                                                            <label for="">Nacionalidad:</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_nacionalidad"><i class="fas fa-flag"></i></span>
+                                                                                    <input disabled name="" type="text" onkeyup="Mayuscula('nacionalidad');" class="form-control" id="nacionalidad">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+
+
+                                                                        <div class="col-sm-3" id="parrafo_sued">
+                                                                            <label for="">Sued:</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_estado"><i class="fas fa-user icon"></i></span>
+
+                                                                                    <input class="form-control" readonly value="" type="text" name="sued" id="sued">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-3" id="parrafo_categoria">
+                                                                            <label for="">Categoría:</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_categoria"><i class="fas fa-user icon"></i></span>
+                                                                                    <input disabled name="" type="text" class="form-control" id="categoria">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-3" id="parrafor_jornada">
+                                                                            <label for="">Jornada:</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_jornada"><i class="fas fa-user icon"></i></span>
+                                                                                    <input disabled name="" type="text" class="form-control" id="jornada">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-3" id="parrafor_hi">
+                                                                            <label for="">H. entrada:</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_jornada"><i class="fas fa-user-clock"></i></span>
+                                                                                    <input disabled name="" type="text" class="form-control" id="hi">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-3" id="parrafor_hf">
+                                                                            <label for="">H. salida:</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_jornada"><i class="fas fa-user-clock"></i></span>
+                                                                                    <input disabled name="" type="text" class="form-control" id="hf">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-3" id="parrafo_fechaentradatrabajo">
+                                                                            <label for="">Fecha Ingreso :</label>
+
+                                                                            <div class="form-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="icono_nacimiento"><i class="far fa-calendar-alt"></i></span>
+                                                                                    <input disabled="true" value="" type="date" name="fechaentrada" id="fechaentrada" class="form-control">
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class=" col-sm-12" style="text-align: right">

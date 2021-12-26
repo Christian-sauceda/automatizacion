@@ -11,13 +11,13 @@ require_once('../clases/funcion_permisos.php');
 date_default_timezone_set("America/Tegucigalpa");
 ////////////////declaracion de variables para la busqueda//////////
 
-$Id_objeto = 165;
+$Id_objeto = 10165;
 
 bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO', 'A CREAR SEGMENTOS');
 
 $visualizacion = permiso_ver($Id_objeto);
-if (isset($_REQUEST['msj'])) {
-  $msj = $_REQUEST['msj'];
+if (isset($_GET['msj'])) {
+  $msj = $_GET['msj'];
 
   if ($msj == 1) {
     echo '<script type="text/javascript">
@@ -53,20 +53,19 @@ if (isset($_REQUEST['msj'])) {
                 </script>';
   }
 }
-// if ($visualizacion == 0) {
-//   echo '<script type="text/javascript">
-//                               swal({
-//                                    title:"",
-//                                    text:"Lo sentimos no tiene permiso de visualizar la pantalla",
-//                                    type: "error",
-//                                    showConfirmButton: false,
-//                                    timer: 3000
-//                                 });
-//                            window.location = "../vistas/menu_usuarios_vista.php";
-
-//                             </script>';
-//   // header('location:  ../vistas/menu_usuarios_vista.php');
-// } else {
+if ($visualizacion == 0) {
+  echo '<script type="text/javascript">
+                              swal({
+                                   title:"",
+                                   text:"Lo sentimos no tiene permiso de visualizar la pantalla",
+                                   type: "error",
+                                   showConfirmButton: false,
+                                   timer: 3000
+                                });
+                            </script>';
+   header('location:  ../vistas/pagina_inicio_vista');
+} 
+//else {
 
 //   if (permisos::permiso_insertar($Id_objeto) == '1') {
 //     $_SESSION['btn_guardar_segmentos'] = "";
@@ -122,7 +121,7 @@ ob_end_flush();
         <form action="../Controlador/movil_segmentos_controlador.php" method="POST">
           <div class="card card-default">
             <div class="card-header">
-              <h3 class="card-title">Crear Nuevo Segmento</h3>
+            <h3 class="card-title">Formulario de creación de nuevos segmentos</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
               </div>

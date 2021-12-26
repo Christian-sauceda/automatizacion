@@ -16,8 +16,7 @@ if(!isset($_SESSION)){
      ob_start();
 //peticion post
 function consumoApi($url, $datos){
-        $ch = curl_init();
-                   
+        $ch = curl_init();     
 $data = json_encode($datos);
 curl_setopt($ch,CURLOPT_URL,$url);
 curl_setopt($ch,CURLOPT_POST,true);

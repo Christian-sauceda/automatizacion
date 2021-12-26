@@ -10,7 +10,7 @@ require_once('../clases/permisos_usuario.php');
 require_once('../clases/funcion_permisos.php');
 require_once('../clases/funcion_bitacora_movil.php');
 
-$Id_objeto = 180;
+$Id_objeto = 10180;
 $visualizacion = permiso_ver($Id_objeto);
 if ($visualizacion == 0) {
   echo '<script type="text/javascript">
@@ -27,22 +27,14 @@ if ($visualizacion == 0) {
 } else {
   bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO', 'A MENU NOTICIAS');
 }
-if (permiso_ver('180') == '1') {
-
-  $_SESSION['movil_menu_noticias_vista'] = "...";
-} else {
-  $_SESSION['movil_menu_noticias_vista'] = "No 
-  tiene permisos para visualizar";
-}
-
-if (permiso_ver('162') == '1') {
+if (permiso_ver('10162') == '1') {
 
   $_SESSION['crear_noticia_vista'] = "...";
 } else {
   $_SESSION['crear_noticia_vista'] = "No 
   tiene permisos para visualizar";
 }
-if (permiso_ver('168') == '1') {
+if (permiso_ver('10168') == '1') {
 
   $_SESSION['gestion_noticias_vista'] = "...";
 } else {

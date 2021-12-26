@@ -109,13 +109,13 @@ if (isset($_REQUEST['msj'])) {
 }
 
 
-$Id_objeto = 12200;
+$Id_objeto = 200;
 $visualizacion = permiso_ver($Id_objeto);
 
 
 
 if ($visualizacion == 0) {
-  
+  // header('location:  ../vistas/menu_roles_vista.php');
   echo '<script type="text/javascript">
                               swal({
                                    title:"",
@@ -124,7 +124,7 @@ if ($visualizacion == 0) {
                                    showConfirmButton: false,
                                    timer: 3000
                                 });
-                           window.location = "../vistas/menu_mantenimiento_laboratorio";
+                           window.location = "../vistas/menu_mantenimiento_laboratorio.php";
 
                             </script>';
 } else {
@@ -221,8 +221,8 @@ ob_end_flush();
 
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista">Inicio</a></li>
-              <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento_laboratorio">Menu Mantenimiento</a></li>
+              <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
+              <li class="breadcrumb-item active"><a href="../vistas/menu_mantenimiento_laboratorio.php">Menu Mantenimiento</a></li>
               <!-- <li class="breadcrumb-item active"><a href="../vistas/mantenimiento_crear_tipo_caracteristica_vista.php">Nuevo Tipo Característica</a></li> -->
             </ol>
           </div>
@@ -248,7 +248,7 @@ ob_end_flush();
         </div>
       </div>
       <div class="card-body">
-        <div style="padding: 2px;"><a href="mantenimiento_crear_tipo_caracteristica_vista" class=" btn btn-success btn-inline float-right mt-0"><i class="fas fa-plus pr-2"></i>Nuevo</a></div>
+        <div style="padding: 2px;"><a href="mantenimiento_crear_tipo_caracteristica_vista.php" class=" btn btn-success btn-inline float-right mt-0"><i class="fas fa-plus pr-2"></i>Nuevo</a></div>
 
         <table id="tblCaracteristica" class="table table-bordered table-striped">
 
@@ -278,7 +278,7 @@ ob_end_flush();
                 <?php } ?>
                 <!-- /. PARA MODIFICAR -->
                 <td style="text-align: center;">
-                  <a href="../vistas/mantenimiento_tipo_caracteristica_vista?tipo_caracteristica=<?php echo $row['tipo_caracteristica']; ?>&validacion=<?php echo $_SESSION['validacion']; ?>" class="btn btn-primary btn-raised btn-xs">
+                  <a href="../vistas/mantenimiento_tipo_caracteristica_vista.php?tipo_caracteristica=<?php echo $row['tipo_caracteristica']; ?>&validacion=<?php echo $_SESSION['validacion']; ?>" class="btn btn-primary btn-raised btn-xs">
                     <i class="far fa-edit" style="display:<?php echo $_SESSION['modificar_tipo_caracteristica'] ?> "></i>
                   </a>
                 </td>

@@ -1,5 +1,5 @@
 <?php require '../clases/Conexion.php';
-    
+    //bandeja de chats
     if(!isset($_SESSION)){ 
         session_start();
     }

@@ -1,3 +1,7 @@
+$(document).ready(function () {
+  readProducts();
+});
+ 
 function readProducts() {
   var parametro;
   $.ajax({

@@ -8,7 +8,7 @@ require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/funcion_bitacora_movil.php');
 require_once('../clases/funcion_visualizar.php');
 
-$Id_objeto = 160;
+$Id_objeto = 10160;
 
 $visualizacion = permiso_ver($Id_objeto);
 
@@ -82,7 +82,7 @@ if ($visualizacion == 0) {
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
         </div>
-        <div class="dt-buttons btn-group"><button class="btn btn-secondary buttons-pdf buttons-html5 btn-danger" tabindex="0" aria-controls="tabla2" type="button" id="GenerarReporte" title="Exportar a PDF"><span><i class="fas fa-file-pdf"></i> </span> </button> </div>
+        <div class="dt-buttons btn-group"><button class="btn btn-secondary buttons-pdf buttons-html5 btn-danger" tabindex="0" aria-controls="tabla2" type="button" id="GenerarReporte" title="Exportar a PDF"><span><i class="fas fa-file-pdf"></i></span></button></div>
 
         <!-- /.card-header -->
         <div class="row">
@@ -121,6 +121,7 @@ if ($visualizacion == 0) {
 
 
     <script type="text/javascript">
+      
       function readProducts() {
         var fecha1 = document.getElementById('date1').value;
         var fecha2 = document.getElementById('date2').value;

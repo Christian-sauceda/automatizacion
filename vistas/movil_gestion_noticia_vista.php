@@ -8,23 +8,20 @@ require_once('../clases/Conexion.php');
 require_once('../clases/funcion_bitacora_movil.php');
 require_once('../clases/funcion_visualizar.php');
 require_once('../clases/funcion_permisos.php');
+require_once('../Controlador/movil_helpers_controlador.php');
 date_default_timezone_set("America/Tegucigalpa");
-$Id_objeto = 168;
+$Id_objeto = 10168;
 $visualizacion = permiso_ver($Id_objeto);
 
 
 if ($visualizacion == 0) {
-  echo '<script type="text/javascript">
-  swal({
-        title:"",
-        text:"Lo sentimos no tiene permiso de visualizar la pantalla",
-        type: "error",
-        showConfirmButton: false,
-        timer: 3000
-      });
-  window.location = "../vistas/pagina_principal_vista.php";
-   </script>';
+ 
 } else {
+$_SESSION['min_caracteres_noticia'] = parametrizacion('ContenidoMinNoticia');
+$_SESSION['max_caracteres_noticia'] = parametrizacion('ContenidoMaxNoticia');
+$_SESSION['min_date_public'] = parametrizacion('TiempoPublicacionMin');
+$_SESSION['max_date_public'] = parametrizacion('TiempoPublicacionMax');
+$_SESSION['archivos_aceptados_noticia'] = parametrizacion('ArchivoAceptadoNoticia');
   bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO', 'A GESTIÓN DE NOTICIAS ');
 }
 
@@ -121,7 +118,7 @@ if (isset($_REQUEST['msj'])) {
   <script src="../js/movil_gestion_noticias.js" defer></script>
 </head>
 
-<body onload="readProducts()">
+<body>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -132,6 +129,7 @@ if (isset($_REQUEST['msj'])) {
           </div>
 
           <div class="col-sm-6">
+            
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
               <li class="breadcrumb-item"><a href="../vistas/movil_menu_noticias_vista.php">Menú de Noticias</a></li>
@@ -146,23 +144,31 @@ if (isset($_REQUEST['msj'])) {
 
     <!--Pantalla 2-->
     <div class="card card-default">
+   
       <div class="card-header">
+      <h3 class="card-title">Listado de noticias existentes en el sistema.</h3><br>
+      <hr>
         <div class="card-tools">
           <a class="btn btn-primary btn-xs" href="../vistas/movil_crear_noticia_vista.php">Nuevo</a>
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
         </div>
-        <div class="dt-buttons btn-group"><button onclick="GenerarReporte();" class="btn btn-secondary buttons-pdf buttons-html5 btn-danger" tabindex="0" aria-controls="tabla2" type="button" title="Exportar a PDF"><span><i class="fas fa-file-pdf"></i> </span> </button> </div>
+        <div class="dt-buttons btn-group">
+          <button class="btn btn-secondary buttons-pdf buttons-html5 btn-danger" tabindex="0" aria-controls="tabla2" type="button" title="Exportar a PDF"><span><i class="fas fa-file-pdf"></i> </span> 
+        </button>
+       </div>
         <!--buscador-->
         <div class="float-right mt-5 ml-5">
           <input class="form-control" placeholder="Buscar..." type="text" id="buscartext" name="buscar" onpaste="return false" onkeyup="leer(this.value)">
         </div>
         <div class="card-body" id="Noticias">
 
-        </div><!-- /.card-body -->
+</div><!-- /.card-body -->
       </div>
-
+     
     </div>
-
+        <?php
+        if (isset($_GET['id'])):
+        ?>
     <!--modal editar noticias-->
     <form action="../Controlador/movil_noticia_controlador.php?op=editar&id=<?php echo $id ?>" method="post" data-form="update" autocomplete="off" enctype="multipart/form-data">
 
@@ -183,18 +189,18 @@ if (isset($_REQUEST['msj'])) {
 
                     <div class="form-group">
                       <label for="titulo">Título:</label>
-                      <input autofocus class="form-control" type="text" value="<?php echo $_SESSION['txtTitulo'] ?>" maxlength="90" id="titulo" name="titulo" required onpaste="return false" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
+                      <input autofocus class="form-control" type="text" minlength="30" maxlength="90" value="<?php echo $_SESSION['txtTitulo'] ?>" maxlength="90" id="titulo" name="titulo" required onpaste="return false" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
                     </div>
 
                     <div class="form-group">
                       <label for="subtitulo">Subtítulo:</label>
-                      <input class="form-control" type="text" value="<?php echo $_SESSION['txtSubtitulo'] ?>" maxlength="90" id="subtitulo" name="subtitulo" required onpaste="return false" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
+                      <input class="form-control" type="text" minlength="30" maxlength="90" value="<?php echo $_SESSION['txtSubtitulo'] ?>" maxlength="90" id="subtitulo" name="subtitulo" required onpaste="return false" onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)">
                     </div>
 
                     <div class="form-group">
 
                       <label for="Contenido">Contenido:</label>
-                      <textarea class="form-control" cols="150" rows="5" maxlength="1000" id="Contenido" name="Contenido" required onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)"><?php echo $_SESSION['txtDescripcion']; ?></textarea>
+                      <textarea class="form-control" cols="150" rows="5" minlength="<?php echo $_SESSION['min_caracteres_noticia']?>" maxlength="<?php echo $_SESSION['max_caracteres_noticia']?>" id="Contenido" name="Contenido" required onkeypress="return Letras(event)" onkeyup="DobleEspacio(this, event)" onkeypress="return comprobar(this.value, event, this.id)"><?php echo $_SESSION['txtDescripcion']; ?></textarea>
                     </div>
 
                     <div class="form-group">
@@ -243,7 +249,7 @@ if (isset($_REQUEST['msj'])) {
                             $rspta = $mysqli->query($sql_archivos);
                             while ($row2 = $rspta->fetch_array(MYSQLI_ASSOC)) { ?>
                               <tr>
-                                <td><?php echo str_replace('http://desarrollo.informaticaunah.com', '..', $row2['url']); ?></td>
+                                <td><?php echo str_replace(base_url, '..', $row2['url']); ?></td>
                                 <td><a onclick="eliminar_archivos(<?php echo $row2['noticia'] ?>,<?php echo $row2['recurso'] ?>)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a></td>
                               </tr>
                             <?php } ?>
@@ -253,7 +259,7 @@ if (isset($_REQUEST['msj'])) {
                     </div>
                     <div class="form-group">
                       <label> Nuevos Archivos:</label>
-                      <input class="form-control" type="file" class="form-control" id="txt_documentos" name="txt_documentos[]" multiple>
+                      <input class="form-control" type="file" class="form-control" id="txt_documentos" name="txt_documentos[]" multiple accept="<?php echo $_SESSION['archivos_aceptados_noticia']?>">
                     </div>
                   </div>
                 </div>
@@ -271,6 +277,7 @@ if (isset($_REQUEST['msj'])) {
       </div>
       <!-- /.  finaldel modal -->
     </form>
+    <?php endif;?>
     <script>
     </script>
 </body>

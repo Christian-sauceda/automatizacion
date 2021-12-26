@@ -5,7 +5,7 @@ require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 
-$Id_objeto = 130;
+$Id_objeto = 9261;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -123,12 +123,12 @@ ob_end_flush();
                                             <label for="">Fecha</label><br>
                                             <input type="text" class="form-control" id="datepicker" name="fecha_recurso_ed" placeholder="dd/mm/yyyy" required> <br>
                                             <label for="">Nombre Gasto</label><br>
-                                            <input type="text" class="form-control" id="nombre_gasto" name="nombre_gasto" maxlength="20" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('nombre_recurso_ed');" onkeypress="return sololetras(event)" required><br>
+                                            <input type="text" class="form-control" id="nombre_gasto" name="nombre_gasto" maxlength="20" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('nombre_gasto');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" required><br>
                                         </div>
                                         <br>
                                         <div class="col-12">
                                             <label for="">Descripción</label><br>
-                                            <textarea cols="20" rows="5" class="form-control" id="desc_gasto" name="desc_gasto" maxlength="100" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('descripcion_ed');" onkeypress="return sololetras(event)" required></textarea>
+                                            <textarea cols="20" rows="5" class="form-control" id="desc_gasto" name="desc_gasto" maxlength="100" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('desc_gasto');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@ ob_end_flush();
             <div class="container-fluid">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">MANTENIMIENTOS GASTOS</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mantenimiento Gastos</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" id="movimientos-tab" data-toggle="tab" href="#movimientos" role="tab" aria-controls="movimientos" aria-selected="false">CRAED</a>
@@ -237,13 +237,18 @@ ob_end_flush();
     </div>
     </section>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" /> -->
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
     <script src="../js/newGasto.js"></script>
     <script type="text/javascript">
-    //esto hasta 
-    var currentdate = new Date();
+        //esto hasta 
+        var currentdate = new Date();
         var datetime = "Fecha: " + currentdate.getDate() + "/" +
             (currentdate.getMonth() + 1) + "/" +
             currentdate.getFullYear() + " Hora " +
@@ -261,8 +266,8 @@ ob_end_flush();
                     [0, 'desc']
                 ],
                 "responsive": true,
-              //desde aqui
-              dom: 'Bfrtip',
+                //desde aqui
+                dom: 'Bfrtip',
                 buttons: [{
                         extend: 'copyHtml5',
                         title: 'Datos Exportados',
@@ -280,11 +285,13 @@ ob_end_flush();
                         // messageTop: 'La información contenida en este documento pertenece a, © 2019-2020 Grupo Unicomer.',
                         // messageBottom: 'La información contenida en este documento pertenece a, © 2019-2020 Grupo Unicomer.',
                         exportOptions: {
-                            columns: ':visible'
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'pdf',
+                        download: 'open',
+                        //orientation: 'landscape',
                         title: 'UNIVERSIDAD NACIONAL AUTONOMA DE HONDURAS REGISTRO MANTENIMIENTO DE GASTOS OPERATIVOS',
                         text: 'PDF <i class="fas fa-file-pdf"></i>',
                         //messageBottom: datetime,
@@ -295,7 +302,11 @@ ob_end_flush();
                             columns: [0, 1, 2, 3, 4]
                         },
                         customize: function(doc) {
-                            doc.content[1].table.widths = ["20%", "20%","20%", "20%","20%"];
+                            doc.content[1].table.widths = ["20%", "20%", "20%", "20%", "20%"];
+                            //doc.styles.tableBodyOdd.alignment = 'center';
+                            doc.defaultStyle.alignment = 'center';
+                            doc.styles.tableHeader.alignment = 'center';
+                            //doc.styles.tableBody.alignment = 'center';
                             doc['footer'] = (function(page, pages) {
                                     return {
                                         columns: [
@@ -439,6 +450,7 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>
 <script>
     const button_gasto = document.getElementById('guardar_edicion_gasto');
     const form_gasto = document.getElementById('editar_datos');

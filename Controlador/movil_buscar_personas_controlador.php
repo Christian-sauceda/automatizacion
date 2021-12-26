@@ -1,6 +1,6 @@
 <?php
  require_once '../clases/Conexion.php';
-
+//tabla segmento_usuario
 $valor = (int)$_POST['tipoPersona'];
 $Segmento_id = (int)$_POST['segmento'];
 if ($valor > 0) {

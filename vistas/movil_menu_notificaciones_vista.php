@@ -10,7 +10,7 @@ require_once('../clases/permisos_usuario.php');
 require_once('../clases/funcion_permisos.php');
 require_once('../clases/funcion_bitacora_movil.php');
 
-$Id_objeto = 181;
+$Id_objeto = 10181;
 $visualizacion = permiso_ver($Id_objeto);
 if ($visualizacion == 0) {
   echo '<script type="text/javascript">
@@ -21,28 +21,18 @@ if ($visualizacion == 0) {
         showConfirmButton: false,
         timer: 3000
       });
-  window.location = "../vistas/pagina_principal_vista.php";
-
    </script>';
+   header('location: ../vistas/pagina_principa_vista.php');
 } else {
   bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO', 'A MENU NOTIFICACIONES');
 }
-if (permiso_ver('181') == '1') {
-
-  $_SESSION['movil_menu_notificaciones_vista'] = "...";
-} else {
-  $_SESSION['movil_menu_notificaciones_vista'] = "No 
-  tiene permisos para visualizar";
-}
-
-if (permiso_ver('163') == '1') {
-
+if (permiso_ver('10163') == '1') {
   $_SESSION['crear_notificacion_vista'] = "...";
 } else {
   $_SESSION['crear_notificacion_vista'] = "No 
   tiene permisos para visualizar";
 }
-if (permiso_ver('169') == '1') {
+if (permiso_ver('10169') == '1') {
 
   $_SESSION['gestion_notificaciones_vista'] = "...";
 } else {

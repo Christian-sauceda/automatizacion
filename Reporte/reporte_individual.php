@@ -70,7 +70,7 @@ $conexion = conexion();
     header("Expires: 0"); ?>
     <div class="container"
         <p align="center" class="f0">
-            <img src="/xampp/htdocs/img/UNAH_este.png" style="width:200px;height:200px;">
+           <!-- <img src="/xampp/htdocs/COPIA_AUTOMATIZACION_IMPLE_GRUPOS/dist/img/UNAH_este.png" style="width:200px;height:200px;">-->
             <strong>DECLARACIÓN JURADA DE ASIGNACIÓN ACADÉMICA</strong><br>
         </p>
         <br>

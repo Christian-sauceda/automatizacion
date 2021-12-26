@@ -7,17 +7,34 @@ button.addEventListener('click', function (e) {
     var form2 = new FormData(formualrio);
     form2.append('agregar_tipo_indicador', 1);
 
-    fetch('../Controlador/action.php', {
-        method: 'POST',
-        body: form2
-    })
-        .then(respuesta => respuesta.json())
-        .then(data => {
-            console.log(data);
-            if(data== 'exito'){
-                swal();
-            }
+    if (formualrio.checkValidity() === false) {
+        e.preventDefault();
+        e.stopPropagation();
+        formualrio.classList.add('was-validated')
+    } else {
+        fetch('../Controlador/action.php', {
+            method: 'POST',
+            body: form2
         })
+            .then(respuesta => respuesta.json())
+            .then(data => {
+                console.log(data);
+                if (data == 'exito') {
+                    swal(
+                        '¡Agregado!',
+                        '!Su registro ha sido agregado con exito!',
+                        'success'
+                    );
+                    document.getElementById("enviar_Datos").reset(); 
+                } else {
+                    swal(
+                        'Error!',
+                        '!algo ocurrio mal!',
+                        'Error'
+                    );
+                }
+            })
+    }  
 
 });
 
@@ -38,7 +55,7 @@ function eliminar(id) {
     }).then(function () {
 
         const form = new FormData();
-        form.append('eliminar', 1);
+        form.append('eliminar_indicadorV2', 1);
         form.append('id', id);
 
         fetch('../Controlador/action.php', {
@@ -47,6 +64,7 @@ function eliminar(id) {
         })
             .then(res => res.json())
             .then(data => {
+                //console.log(data);
                 if (data == 'exito') {
                     swal(
                         'Eliminado!',
@@ -91,7 +109,7 @@ function cambiarEstado(id, estado) {
     }).then(function () {
 
         const formEstado = new FormData();
-        formEstado.append('cambiar_estado', 1);
+        formEstado.append('cambiar_estado_indicador', 1);
         formEstado.append('id', id);
         formEstado.append('estado', estado);
 
@@ -101,6 +119,7 @@ function cambiarEstado(id, estado) {
         })
             .then(res => res.json())
             .then(data => {
+                //console.log(data);
                 if (data == 'exito') {
                     swal(
                         'Cambiado!',

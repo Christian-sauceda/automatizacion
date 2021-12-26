@@ -125,6 +125,14 @@ switch ($_GET["op"]) {
     $respuesta = $instancia_modelo->listar_permiso_objeto($id_rol);
     echo json_encode($respuesta->fetch_all());
     break;
+  case'traer_maximo':
+    $respuesta=$instancia_modelo->traer_maximo_id($id_modulo);
+    $var=$respuesta['MAX(id_objeto)'];
+    echo $var;
+    print_r ($respuesta);
+
+    echo json_encode($respuesta);
+    break;
 }//Fin del Switch////////////
 
 

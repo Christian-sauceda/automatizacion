@@ -81,6 +81,14 @@ class objetos
         $sql = 'select mo.id_modulo,mo.id_objeto,o.objeto from tbl_modulo_objetos mo, tbl_objetos o, tbl_permisos_usuarios p where mo.id_objeto=o.Id_objeto and p.Id_objeto=o.Id_objeto and p.Id_rol=' . $id_rol;
         return $instancia_conexion->ejecutarConsulta($sql);
     }
+    //Trae el maximo id del modulo
+    function traer_maximo_id($id_modulo){
+        global $instancia_conexion;
+        $sql = 'select MAX(id_objeto) from tbl_modulo_objetos where id_modulo='.$id_modulo.';';
+        return $instancia_conexion->ejecutarConsultaSimpleFila($sql);
+
+    }
 }
+
 
 ?>

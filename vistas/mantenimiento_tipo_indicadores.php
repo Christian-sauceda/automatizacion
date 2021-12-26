@@ -5,7 +5,7 @@ require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 
-$Id_objeto = 132;
+$Id_objeto = 9263;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -112,12 +112,12 @@ ob_end_flush();
                                                             <label for="">Fecha</label><br>
                                                             <input type="text" class="form-control" id="datepicker" name="fecha_recurso_ed" placeholder="dd/mm/yyyy" required> <br>
                                                             <label for="">Nombre Indicador</label><br>
-                                                            <input type="text" class="form-control" id="nombre_indicador" name="nombre_recurso_ed" required><br>
+                                                            <input type="text" class="form-control" id="nombre_indicador" name="nombre_recurso_ed" maxlength="20" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('nombre_recurso_ed');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" required><br>
                                                         </div>
                                                         <br>
                                                         <div class="col-12">
                                                             <label for="">Descripción</label><br>
-                                                            <textarea cols="20" rows="5" class="form-control" id="descripcion_ed" name="descripcion_ed" maxlength="50" required></textarea>
+                                                            <textarea cols="20" rows="5" class="form-control" id="descripcion_ed" name="descripcion_ed" maxlength="50" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('descripcion_ed');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" required></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -168,7 +168,7 @@ ob_end_flush();
             <div class="container-fluid">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">MANTENIMIENTO INDICADORES</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mantenimiento Indicadores</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" id="movimientos-tab" data-toggle="tab" href="#movimientos" role="tab" aria-controls="movimientos" aria-selected="false">CRAED</a>
@@ -279,11 +279,12 @@ ob_end_flush();
                         // messageTop: 'La información contenida en este documento pertenece a, © 2019-2020 Grupo Unicomer.',
                         // messageBottom: 'La información contenida en este documento pertenece a, © 2019-2020 Grupo Unicomer.',
                         exportOptions: {
-                            columns: ':visible'
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'pdf',
+                        download: 'open',
                         title: 'UNIVERSIDAD NACIONAL AUTONOMA DE HONDURAS REGISTRO MANTENIMIENTO DE INDICADORES DE GESTION ACAEMICA',
                         text: 'PDF <i class="fas fa-file-pdf"></i>',
                         //messageBottom: datetime,
@@ -295,6 +296,8 @@ ob_end_flush();
                         },
                         customize: function(doc) {
                             doc.content[1].table.widths = ["20%", "20%", "20%", "20%", "20%"];
+                            doc.defaultStyle.alignment = 'center';
+                            doc.styles.tableHeader.alignment = 'center';
                             doc['footer'] = (function(page, pages) {
                                     return {
                                         columns: [
@@ -440,6 +443,7 @@ ob_end_flush();
 </body>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>
 <script>
     const button_edicion_indicador = document.getElementById('edicion_tipo_indica');
     const formulario_edicion = document.getElementById('editar_datos');

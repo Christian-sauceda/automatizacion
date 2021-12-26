@@ -5,7 +5,7 @@ require_once('../vistas/pagina_inicio_vista.php');
 require_once('../clases/funcion_bitacora.php');
 require_once('../clases/funcion_visualizar.php');
 
-$Id_objeto = 128;
+$Id_objeto = 9259;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -90,7 +90,7 @@ ob_end_flush();
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Envio de datos</h5>
+                                        <h5 class="modal-title">Envío de Datos</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -113,12 +113,12 @@ ob_end_flush();
                                                             <label for="">Fecha</label><br>
                                                             <input type="text" class="form-control" id="datepicker" name="fecha_recurso_ed" placeholder="dd/mm/yyyy" required> <br>
                                                             <label for="">Nombre Recurso</label><br>
-                                                            <input type="text" class="form-control" id="nombre_recurso_ed" name="nombre_recurso_ed" maxlength="20" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('nombre_recurso_ed');" onkeypress="return sololetras(event)" required><br>
+                                                            <input type="text" class="form-control" id="nombre_recurso_ed" name="nombre_recurso_ed"  maxlength="20" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('nombre_recurso_ed');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" required><br>
                                                         </div>
                                                         <br>
                                                         <div class="col-12">
                                                             <label for="">Descripción</label><br>
-                                                            <textarea cols="20" rows="5" class="form-control" id="descripcion_ed" name="descripcion_ed" maxlength="100" value="" onkeyup="DobleEspacio(this, event);  MismaLetra('descripcion_ed');" onkeypress="return sololetras(event)" required></textarea>
+                                                            <textarea cols="20" rows="5" class="form-control" id="descripcion_ed" name="descripcion_ed" maxlength="255" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('descripcion_ed');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" required></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -172,7 +172,7 @@ ob_end_flush();
             <div class="container-fluid">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">MANTENIMIENTO RECURSOS</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mantenimiento Recursos</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" id="movimientos-tab" data-toggle="tab" href="#movimientos" role="tab" aria-controls="movimientos" aria-selected="false">CRAED</a>
@@ -283,7 +283,7 @@ ob_end_flush();
                         // messageTop: 'La información contenida en este documento pertenece a, © 2019-2020 Grupo Unicomer.',
                         // messageBottom: 'La información contenida en este documento pertenece a, © 2019-2020 Grupo Unicomer.',
                         exportOptions: {
-                            columns: ':visible'
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {

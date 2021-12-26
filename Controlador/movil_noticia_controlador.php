@@ -41,9 +41,9 @@ if (isset($_GET['op'])) {
         case 'editar':
             $modelo = new modelo_registro_noticia();
             $id = $_GET['id'];
-            $titulo = isset($_POST['titulo']) ? ucfirst($_POST['titulo']) : '';
-            $subtitulo = isset($_POST['subtitulo']) ? ucfirst($_POST['subtitulo']) : '';
-            $contenido = isset($_POST['Contenido']) ? mysqli_real_escape_string($mysqli,$_POST['Contenido']) : '';
+            $titulo = isset($_POST['titulo']) ? ucfirst(mysqli_real_escape_string($mysqli,$_POST['titulo'])) : '';
+            $subtitulo = isset($_POST['subtitulo']) ? ucfirst(mysqli_real_escape_string($mysqli,$_POST['subtitulo'])) : '';
+            $contenido = isset($_POST['Contenido']) ? ucfirst(mysqli_real_escape_string($mysqli,$_POST['Contenido'])) : '';
             $segmento = $_POST['Segmentos'];
             $fecha_publicacion = date('Y-m-d H:i:s',strtotime($_POST['txt_fecha_Publicacion']));
             $fecha_vencimiento = date('Y-m-d H:i:s',strtotime($_POST['txt_fecha_vencimiento']));

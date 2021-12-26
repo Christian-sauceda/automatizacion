@@ -2,45 +2,34 @@
 session_start();
 require_once('../clases/Conexion.php');
 require_once('../vistas/pagina_inicio_vista.php');
-// require_once('../clases/funcion_bitacora.php');
-// require_once('../clases/funcion_visualizar.php');
+require_once('../clases/funcion_bitacora.php');
+require_once('../clases/funcion_visualizar.php');
 
-// if (permiso_ver('114') == '1') {
-
-//   $_SESSION['g_cargaacademica_vista'] = "...";
-// } else {
-//   $_SESSION['g_cargaacademica_vista'] = "No 
-//    tiene permisos para visualizar";
-// }
+$Id_objeto = 9242;
 
 
-// $Id_objeto = 114;
-
-// $visualizacion = permiso_ver($Id_objeto);
+$visualizacion = permiso_ver($Id_objeto);
 
 
+if ($visualizacion == 0) {
+    echo '<script type="text/javascript">
+                              swal({
+                                   title:"",
+                                   text:"Lo sentimos no tiene permiso de visualizar la pantalla",
+                                   type: "error",
+                                   showConfirmButton: false,
+                                   timer: 3000
+                                });
+                           window.location = "../vistas/indicadores_poa.php";
 
-// if ($visualizacion == 0) {
-//   header('location:  ../vistas/pagina_principal_vista.php');
-// } else {
-//   bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'Ingreso', 'A Bitacora del sistema');
-// }
+                            </script>';
+} else {
+
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', 'GESTIÓN DE INDICADORES POA.');
 
 
-// if (isset($_REQUEST['msj'])) {
-//   $msj = $_REQUEST['msj'];
-
-//   if ($msj == 1) {
-//     echo '<script> alert("Fecha invalidas favor verificar.")</script>';
-//   }
-
-//   if ($msj == 2) {
-//     echo '<script> alert("Datos por rellenar, por favor verificar.")</script>';
-//   }
-//   if ($msj == 3) {
-//     echo '<script> alert("Por favor verificar fechas.")</script>';
-//   }
-// }
+  
+}
 
 ?>
 
@@ -177,9 +166,9 @@ require_once('../vistas/pagina_inicio_vista.php');
                                                                 <form id="agregar_responsables">
                                                                     <div class="form-group">
                                                                         <label for="formGroupExampleInput">Responsable</label>
-                                                                        <input type="text" class="form-control" id="responsable_rs" name="responsable_rs" placeholder="Agregar responsable" required>
+                                                                        <input type="text" class="form-control" id="responsable_rs" name="responsable_rs" maxlength="15" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('responsable_rs');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Agregar responsable" required>
                                                                         <input type="text" id="id_indicador_res" name="id_indicador_res" hidden>
-                                                                        <input type="text" id="id_responsable_edit">
+                                                                        <!--input type="text" id="id_responsable_edit"-->
                                                                     </div>
                                                                     <div id="mensaje_responsable">
 
@@ -223,10 +212,10 @@ require_once('../vistas/pagina_inicio_vista.php');
                                     <div class="modal-body">
                                         <form id="ind_form">
                                             <div class="container">
-                                                <label for="">Nombre indicador</label>
-                                                <textarea class="form-control" id="ind_indicador" name="ind_indicador" rows="3" maxlength="100" required></textarea>
-                                                <label for="">Resultado esperado</label>
-                                                <textarea class="form-control" id="ind_resultado" name="ind_resultado" rows="3" maxlength="100" required></textarea>
+                                                <label for="">Nombre Indicador</label>
+                                                <textarea class="form-control" id="ind_indicador" name="ind_indicador" rows="3" maxlength="255" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('ind_indicador');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder="Nombre indicador" required></textarea>
+                                                <label for="">Resultado Esperado</label>
+                                                <textarea class="form-control" id="ind_resultado" name="ind_resultado" rows="3" maxlength="255" value="" style="text-transform: uppercase" onkeyup="DobleEspacio(this, event); MismaLetra('ind_resultado');" oncopy="return false" onpaste="return false" onkeypress="return sololetras(event)" placeholder=" Resultado Esperado" required></textarea>
                                                 <input type="text" id="id_indicador_edit" name="id_indicador_edit" hidden>
                                             </div>
                                         </form>
@@ -263,7 +252,7 @@ require_once('../vistas/pagina_inicio_vista.php');
             <div class="card-body  ">
                 <div class="row">
                     <div class="col-9">
-                        <h3 class="card-title">Registro de indicadores</h3>
+                        <h3 class="card-title">Registro de Indicadores</h3>
                     </div>
                     <div class="col-3">
                         <!-- <button class="btn btn-warning" onclick="clearData();">Limpiar data</button>
@@ -827,3 +816,4 @@ require_once('../vistas/pagina_inicio_vista.php');
 </body>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>

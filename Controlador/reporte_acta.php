@@ -226,7 +226,7 @@ $resultado = mysqli_query($connection, $sql);
 	$pdf->Cell(75, 7, utf8_decode("Nombre reunión"), 1, 0, 'C');
 	$pdf->Cell(40, 7, "Asistencia", 1, 0, 'C');
 	$pdf->Cell(40, 7, "Inasistencia", 1, 0, 'C');
-	$pdf->Cell(40, 7, "Excusa", 1, 0, 'C');
+	$pdf->Cell(40, 7, "Excusado", 1, 0, 'C');
 	$pdf->ln();
 
 	$sql="SELECT t1.id_reunion, t1.num_acta, t3.nombre_reunion,
@@ -261,6 +261,7 @@ $resultado = mysqli_query($connection, $sql);
         $pdf->SetX(50);
         $pdf->Cell(105, 7, "Nombres", 1, 0, 'C');
         $pdf->Cell(70, 7, "Estado Asistencia", 1, 0, 'C');
+        $pdf->Cell(90, 7, "Firma", 1, 0, 'C');
         $pdf->ln();
 
 		$sql="SELECT concat_ws(' ', pe.nombres, pe.apellidos)nombres, (ep.estado)'asistencia' 
@@ -277,6 +278,7 @@ $resultado = mysqli_query($connection, $sql);
 			$pdf->SetFont('Arial', '', 12);
 			$pdf->Cell(105, 15, utf8_decode($lista['nombres']), 1, 0, 'L');
 			$pdf->Cell(70, 15, utf8_decode($lista['asistencia']), 1, 0, 'C');
+			$pdf->Cell(90, 15, '', 1, 0, 'C');
 			$pdf->ln();
 		}		
 		$pdf->ln();

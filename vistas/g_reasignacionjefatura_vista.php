@@ -7,7 +7,7 @@ require_once ('../clases/funcion_bitacora.php');
 require_once ('../clases/funcion_visualizar.php');
 require_once ('../clases/funcion_permisos.php');
 
-if (permiso_ver('118')=='1')
+if (permiso_ver('9264')=='1')
  {
   
   $_SESSION['g_reasignacionjefatura_vista']="...";
@@ -19,7 +19,7 @@ $_SESSION['g_reasignacionjefatura_vista']="No
 
 }
 
-if (permiso_ver('119')=='1')
+if (permiso_ver('9250')=='1')
  {
   
   $_SESSION['g_reasignacion_solicitud']="...";
@@ -31,19 +31,19 @@ $_SESSION['g_reasignacion_solicitud']="No
 
 }
 
-if (permiso_ver('120')=='1')
+if (permiso_ver('9251')=='1')
  {
   
-  $_SESSION['g_reasignacion_retroalimentacion']="...";
+  $_SESSION['g_vista_retroalimentacionJefatura']="...";
 }
 else
 {
-$_SESSION['g_reasignacion_retroalimentacion']="No 
+$_SESSION['g_vista_retroalimentacionJefatura']="No 
   tiene permisos para visualizar";
 
 }
 
-$Id_objeto = 118;
+$Id_objeto = 9264;
 
 
 $visualizacion = permiso_ver($Id_objeto);
@@ -97,7 +97,7 @@ ob_end_flush()
             <ol class="breadcrumb float-sm-right">
 
             <li class="breadcrumb-item"><a href="../vistas/pagina_principal_vista.php">Inicio</a></li>
-              <li class="breadcrumb-item active">Gestion de Reasignacion Jefatura</li>
+              <li class="breadcrumb-item active">Gestión de Reasignación Jefatura</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -134,8 +134,8 @@ ob_end_flush()
 <div class="col-6 col-sm-6 col-md-4">
   <div class="small-box bg-light">
   <div class="inner">	
-    <h4>Retroalimentacion</h4>
-    <p><?php echo $_SESSION['g_reasignacion_retroalimentacion'];?></p>
+    <h4>Retroalimentación</h4>
+    <p><?php echo $_SESSION['g_vista_retroalimentacionJefatura'];?></p>
   </div>
   <div class="icon">
     <i class="fas fa-user-plus"></i>

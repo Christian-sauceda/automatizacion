@@ -1,3 +1,40 @@
+<?php
+ob_start();
+//session_start();
+require_once('../clases/Conexion.php');
+require_once('../vistas/pagina_inicio_vista.php');
+require_once('../clases/funcion_bitacora.php');
+require_once('../clases/funcion_visualizar.php');
+
+
+$Id_objeto = 9244;
+
+
+$visualizacion = permiso_ver($Id_objeto);
+
+
+if ($visualizacion == 0) {
+    echo '<script type="text/javascript">
+                              swal({
+                                   title:"",
+                                   text:"Lo sentimos no tiene permiso de visualizar la pantalla",
+                                   type: "error",
+                                   showConfirmButton: false,
+                                   timer: 3000
+                                });
+                           window.location = "../vistas/metas_poa.php";
+
+                            </script>';
+} else {
+
+    bitacora::evento_bitacora($Id_objeto, $_SESSION['id_usuario'], 'INGRESO', 'METAS POA.');
+
+
+  
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -55,19 +92,19 @@
                             <form id="agregar_metas">
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">Primer Trimestre</label>
-                                    <input type="text" class="form-control" id="primer_trimestre" name="primer_trimestre" maxlength="3" placeholder="Primero">
+                                    <input type="text" class="form-control" id="primer_trimestre" name="primer_trimestre" maxlength="3" value=""onkeypress="return solonumeros(event)" oncopy="return false" onpaste="return false" placeholder="Primero" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">Segundo Trimestre</label>
-                                    <input type="text" class="form-control" id="segundo_trimestre" name="segundo_trimestre" maxlength="3" placeholder="Segundo">
+                                    <input type="text" class="form-control" id="segundo_trimestre" name="segundo_trimestre" maxlength="3" value=""onkeypress="return solonumeros(event)" oncopy="return false" onpaste="return false" placeholder="Segundo" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput3">Tercer Trimestre</label>
-                                    <input type="text" class="form-control" id="tercer_trimestre" name="tercer_trimestre" maxlength="3" placeholder="Tercero">
+                                    <input type="text" class="form-control" id="tercer_trimestre" name="tercer_trimestre" maxlength="3" value=""onkeypress="return solonumeros(event)" oncopy="return false" onpaste="return false" placeholder="Tercero" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput3">Cuarto Trimestre</label>
-                                    <input type="text" class="form-control" id="cuarto_trimestre" name="cuarto_trimestre" maxlength="3" placeholder="Cuarto">
+                                    <input type="text" class="form-control" id="cuarto_trimestre" name="cuarto_trimestre" maxlength="3" value=""onkeypress="return solonumeros(event)" oncopy="return false" onpaste="return false" placeholder="Cuarto" required>
                                 </div>
                                 <div id="mensaje_meta">
 
@@ -181,3 +218,4 @@
 </script>
 
 </html>
+<script type="text/javascript" src="../js/validacion_jefatura.js"></script>

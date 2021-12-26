@@ -11,7 +11,7 @@ require_once('../clases/funcion_permisos.php');
 date_default_timezone_set("America/Tegucigalpa");
 
 
-$Id_objeto = 167;
+$Id_objeto = 10167;
 
 bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO ', 'A CREAR TIPO NOTIFICACIÓN');
 
@@ -136,7 +136,7 @@ if (isset($_REQUEST['msj'])) {
 
           <div class="card card-default">
             <div class="card-header">
-              <h3 class="card-title">Tipo Notificación</h3>
+            <h3 class="card-title">Formulario de creación tipo de notificaciones</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>

@@ -10,9 +10,14 @@ require_once('../clases/conexion_mantenimientos.php');
 require_once('../clases/funcion_bitacora_movil.php');
 require_once('../clases/funcion_visualizar.php');
 require_once('../clases/funcion_permisos.php');
+require_once('../Controlador/movil_helpers_controlador.php');
 date_default_timezone_set("America/Tegucigalpa");
-$Id_objeto = 162;
-
+$Id_objeto = 10162;
+$_SESSION['min_caracteres_noticia'] = parametrizacion('ContenidoMinNoticia');
+$_SESSION['max_caracteres_noticia'] = parametrizacion('ContenidoMaxNoticia');
+$_SESSION['min_date_public'] = parametrizacion('TiempoPublicacionMin');
+$_SESSION['max_date_public'] = parametrizacion('TiempoPublicacionMax');
+$_SESSION['archivos_aceptados_noticia'] = parametrizacion('ArchivoAceptadoNoticia');
 bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO', 'A CREAR NOTICIA');
 
 ?>
@@ -68,7 +73,7 @@ bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO', 
 
           <div class="card card-default">
             <div class="card-header">
-              <h3 class="card-title"></h3>
+              <h3 class="card-title">Formulario de creación de nuevas noticias</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -80,16 +85,16 @@ bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO', 
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="titulo"> Título </label>
-                    <input autofocus class="form-control" type="text" maxlength="90" id="titulo" name="titulo" required onpaste="return false" onkeyup="DobleEspacio(this, event)" onkeypress="return check(event)">
+                    <input autofocus class="form-control" type="text" minlength="30" maxlength="90" id="titulo" name="titulo" required onpaste="return false" onkeyup="DobleEspacio(this, event)" onkeypress="return check(event)">
                   </div>
                   <div class="form-group">
                     <label for="subtitulo"> Subtítulo </label>
-                    <input autofocus class="form-control" type="text" maxlength="90" id="subtitulo" name="subtitulo" required onpaste="return false" onkeyup="DobleEspacio(this, event)" onkeypress="return check(event)">
+                    <input class="form-control" type="text" minlength="30" maxlength="90" id="subtitulo" name="subtitulo" required onpaste="return false" onkeyup="DobleEspacio(this, event)" onkeypress="return check(event)">
                   </div>
                   <div class="form-group">
                     <label for="Contenido">Contenido:</label>
                     <br>
-                    <textarea name="Contenido" id="Contenido" cols="150" rows="5" maxlength="1000" required></textarea>
+                    <textarea name="Contenido" id="Contenido" cols="150" rows="5" minlength="<?php echo $_SESSION['min_caracteres_noticia']?>" maxlength="<?php echo $_SESSION['max_caracteres_noticia']?>" required></textarea>
                   </div>
 
                   <div class="form-group">
@@ -114,13 +119,13 @@ bitacora_movil::evento_bitacora($_SESSION['id_usuario'], $Id_objeto, 'INGRESO', 
                   <div class="form-group">
                     <!-- FECHA DE VENCIMIENTO txt_fecha_Publicacion -->
                     <label for="txt_fecha_Publicacion">Fecha y Hora de Vencimiento:</label>
-                    <input class="form-control" type="datetime-local" id="txt_fecha_vencimiento" name="txt_fecha_vencimiento" min="<?php echo date("Y-m-d\TH:i", strtotime(date("Y-m-d\TH:i") . "+ 1 month")); ?>" max="<?php echo date("Y-m-d\TH:i", strtotime(date("Y-m-d\TH:i") . "+ 3 month")); ?>" required>
+                    <input class="form-control" type="datetime-local" id="txt_fecha_vencimiento" name="txt_fecha_vencimiento" min="<?php echo date("Y-m-d\TH:i", strtotime(date("Y-m-d\TH:i") . "+ ".$_SESSION['min_date_public'])); ?>" max="<?php echo date("Y-m-d\TH:i", strtotime(date("Y-m-d\TH:i") . "+ ".$_SESSION['max_date_public'])); ?>" required>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label> Adjuntar Archivos</label>
-                  <input class="form-control" type="file" class="form-control" id="txt_documentos" name="txt_documentos[]" multiple>
+                  <input class="form-control" type="file" accept="<?php echo $_SESSION['archivos_aceptados_noticia']?>" class="form-control" id="txt_documentos" name="txt_documentos[]" multiple>
                 </div>
               </div>
               <p class="text-center" style="margin-top: 20px;">
